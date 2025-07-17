@@ -9,7 +9,8 @@
   ],
   "description": "",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts --clean"
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "preview": "pnpm run build && node example/test.js"
   },
   "keywords": [],
   "author": "",
