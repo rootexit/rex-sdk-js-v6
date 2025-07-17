@@ -1,7 +1,7 @@
-import { SignatureV4 } from "@smithy/signature-v4";
-import { HttpRequest } from "@smithy/protocol-http";
-import { Sha256 } from "@aws-crypto/sha256-js";
-import type { SDKConfig, SDKRequestParams } from "./types";
+import {SignatureV4} from "@smithy/signature-v4";
+import {HttpRequest} from "@smithy/protocol-http";
+import {Sha256} from "@aws-crypto/sha256-js";
+import type {SDKConfig, SDKRequestParams} from "./types";
 
 export async function signRequest(
   config: SDKConfig,
@@ -14,7 +14,7 @@ export async function signRequest(
       secretAccessKey: config.secretAccessKey
     },
     service: service, // or "s3", etc.
-    region: config.region,
+    region: config.region!,
     sha256: Sha256,
   });
 
@@ -24,7 +24,7 @@ export async function signRequest(
     hostname: config.host,
     path: `/rex/${config.version}/apis${params.path}`,
     headers: {
-      host: config.host,
+      host: config.host!,
       ...params.headers,
     },
     body: JSON.stringify(params.body),

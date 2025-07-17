@@ -1,12 +1,10 @@
-import { signRequest } from "./signer";
-import type { SDKConfig, SDKRequestParams } from "./types";
-// import fetch from 'cross-fetch';
-import { SignatureV4 } from "@smithy/signature-v4";
-import { HttpRequest } from "@smithy/protocol-http";
-import { Sha256 } from "@aws-crypto/sha256-js";
+import {signRequest} from "./signer";
+import type {SDKConfig, SDKRequestParams} from "./types";
+import {BaseApi} from "./base/base";
 
 export class RExSdk {
   private config: SDKConfig;
+  public base: BaseApi;
 
   constructor(config: SDKConfig) {
     if (config.env == undefined || config.env == null || config.env == "" || config.env.length <= 0 ) {
@@ -31,6 +29,7 @@ export class RExSdk {
       }
     }
     this.config = config;
+    this.base = new BaseApi(this.config)
   }
 
   async request(service:string, params: SDKRequestParams): Promise<any> {
