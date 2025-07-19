@@ -1,10 +1,12 @@
 import { signRequest } from './signer';
 import type { SDKConfig, SDKRequestParams } from './types';
 import { BaseApi } from './base/base';
+import { AKCApi } from './kms/akc/index';
 
 export class RExSdk {
   private config: SDKConfig;
   public base: BaseApi;
+  public akc: AKCApi;
 
   constructor(config: SDKConfig) {
     if (config.env == undefined || config.env == null || config.env == '' || config.env.length <= 0) {
@@ -30,6 +32,7 @@ export class RExSdk {
     }
     this.config = config;
     this.base = new BaseApi(this.config);
+    this.akc = new AKCApi(this.config);
   }
 
   async request(service: string, params: SDKRequestParams): Promise<any> {
