@@ -26,7 +26,8 @@ export class AKCApi {
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'POST',
-      headers: {}
+      headers: {},
+      body: params
     });
     const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
       method: signed.method,
@@ -43,7 +44,8 @@ export class AKCApi {
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'POST',
-      headers: {}
+      headers: {},
+      body: params
     });
     const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
       method: signed.method,
@@ -81,7 +83,8 @@ export class AKCApi {
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'POST',
-      headers: {}
+      headers: {},
+      body: params
     });
     const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
       method: signed.method,
