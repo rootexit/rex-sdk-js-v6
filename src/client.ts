@@ -6,6 +6,7 @@ import { SKCApi } from './kms/skc';
 import { MASApi } from './mas';
 import { SASApi } from './sas';
 import { TPASApi } from './tpas';
+import { PeriodicJobAPI } from './ctas/periodicJob';
 
 export class RExSdk {
   private config: SDKConfig;
@@ -15,6 +16,7 @@ export class RExSdk {
   public mas: MASApi;
   public sas: SASApi;
   public tpas: TPASApi;
+  public periodicJob: PeriodicJobAPI;
 
   constructor(config: SDKConfig) {
     if (config.env == undefined || config.env == null || config.env == '' || config.env.length <= 0) {
@@ -45,6 +47,7 @@ export class RExSdk {
     this.mas = new MASApi(this.config);
     this.sas = new SASApi(this.config);
     this.tpas = new TPASApi(this.config);
+    this.periodicJob = new PeriodicJobAPI(this.config);
   }
 
   async request(service: string, params: SDKRequestParams): Promise<any> {
