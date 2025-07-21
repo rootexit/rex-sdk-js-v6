@@ -77,7 +77,7 @@ export class AKCApi {
         return res.json();
     }
 
-    /* 获取公钥 */
+    /* 校验 */
     async KmsAkcVerify(params: KmsAkcVerifyReq): Promise<BaseApiResult & KmsAkcVerifyResp> {
         let url = '/kms/akc/verify';
 
