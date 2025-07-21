@@ -1,38 +1,52 @@
-export type KmsAkcCreateKeychainResult = {
-  data: {};
+export type KmsAkcCreateKeychainResp = {
+    data: {
+        status: string
+        name: string
+        sign_method: string
+        cert_type: string
+        public_key: string
+    };
 };
 
-export type KmsAkcCreateKeychainParams = {
-  cert_type: string;
-  name: string;
-};
-
-export type KmsAkcGetKeychainPublicKeyResult = {
-  data: {};
-};
-
-export type KmsAkcGetKeychainPublicKeyParams = {
-  name: string;
-};
-
-export type KmsAkcSignResult = {
-  data: {
+export type KmsAkcCreateKeychainReq = {
+    cert_type: string;
     name: string;
-    sign: string;
-  };
 };
 
-export type KmsAkcSignParams = {
-  name: string;
-  sign_content: string;
+export type KmsAkcGetKeychainPublicKeyResp = {
+    data: {
+        name: string;
+        sign_method: string;
+        cert_type: string;
+        public_key: string;
+    };
 };
 
-export type KmsAkcVerifyResult = {
-  data: {};
+export type KmsAkcGetKeychainPublicKeyReq = {
+    name: string;
 };
 
-export type KmsAkcVerifyParams = {
-  name: '';
-  sign_content: '';
-  sign: '';
+export type KmsAkcSignResp = {
+    data: {
+        name: string;
+        sign: string;
+    };
+};
+
+export type KmsAkcSignReq = {
+    name: string;
+    sign_content: string;
+};
+
+export type KmsAkcVerifyResp = {
+    data: {
+        name: string;
+        verify: string;
+    };
+};
+
+export type KmsAkcVerifyReq = {
+    name: '';
+    sign_content: '';
+    sign: '';
 };
