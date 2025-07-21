@@ -18,7 +18,7 @@ export class MASApi {
     }
 
     /* 人机验证【验证码初始化】 */
-    async KmsSkcCreateKeychain(params: BehavioralVerificationInitReq): Promise<BaseApiResult & BehavioralVerificationInitResp> {
+    async BehavioralVerificationInit(params: BehavioralVerificationInitReq): Promise<BaseApiResult & BehavioralVerificationInitResp> {
         let url = '/mas/bv/init';
 
         const signed = await signRequest(this.config, this.service, {
@@ -38,7 +38,7 @@ export class MASApi {
     }
 
     /* 人机验证【验证码校验】 */
-    async KmsSkcEncrypt(params: BehavioralVerificationVerifyReq): Promise<BaseApiResult & BehavioralVerificationVerifyResp> {
+    async BehavioralVerificationVerify(params: BehavioralVerificationVerifyReq): Promise<BaseApiResult & BehavioralVerificationVerifyResp> {
         let url = '/mas/bv/verify';
 
         const signed = await signRequest(this.config, this.service, {
@@ -58,7 +58,7 @@ export class MASApi {
     }
 
     /* 通用短信【初始化】 */
-    async KmsSkcBatchEncrypt(params: SmsInitReq): Promise<BaseApiResult & SmsInitResp> {
+    async SmsVerificationInit(params: SmsInitReq): Promise<BaseApiResult & SmsInitResp> {
         let url = '/mas/sms/init';
 
         const signed = await signRequest(this.config, this.service, {
@@ -79,7 +79,7 @@ export class MASApi {
     }
 
     /* 通用短信【短信校验】 */
-    async KmsSkcDecrypt(params: SmsVerifyReq): Promise<BaseApiResult & SmsVerifyResp> {
+    async SmsVerificationVerify(params: SmsVerifyReq): Promise<BaseApiResult & SmsVerifyResp> {
         let url = '/mas/sms/verify';
 
         const signed = await signRequest(this.config, this.service, {

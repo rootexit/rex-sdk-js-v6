@@ -4,6 +4,7 @@ import {BaseApi} from './base/base';
 import {AKCApi} from './kms/akc';
 import {SKCApi} from './kms/skc';
 import {MASApi} from './mas';
+import {SASApi} from './sas';
 
 export class RExSdk {
     private config: SDKConfig;
@@ -11,6 +12,7 @@ export class RExSdk {
     public akc: AKCApi;
     public skc: SKCApi;
     public mas: MASApi;
+    public sas: SASApi;
 
     constructor(config: SDKConfig) {
         if (config.env == undefined || config.env == null || config.env == '' || config.env.length <= 0) {
@@ -39,6 +41,7 @@ export class RExSdk {
         this.akc = new AKCApi(this.config);
         this.skc = new SKCApi(this.config);
         this.mas = new MASApi(this.config);
+        this.sas = new SASApi(this.config);
     }
 
     async request(service: string, params: SDKRequestParams): Promise<any> {
