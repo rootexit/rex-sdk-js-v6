@@ -7,6 +7,9 @@ import { MASApi } from './mas';
 import { SASApi } from './sas';
 import { TPASApi } from './tpas';
 import { PeriodicJobAPI } from './ctas/periodicJob';
+import { TagApi } from './ups/tag';
+import { IndustryApi } from './ups/industry';
+import { ShortLinkApi } from './ups/shortLink';
 
 export class RExSdk {
   private config: SDKConfig;
@@ -17,6 +20,9 @@ export class RExSdk {
   public sas: SASApi;
   public tpas: TPASApi;
   public periodicJob: PeriodicJobAPI;
+  public tag: TagApi;
+  public industry: IndustryApi;
+  public shortLink: ShortLinkApi;
 
   constructor(config: SDKConfig) {
     if (config.env == undefined || config.env == null || config.env == '' || config.env.length <= 0) {
@@ -48,6 +54,9 @@ export class RExSdk {
     this.sas = new SASApi(this.config);
     this.tpas = new TPASApi(this.config);
     this.periodicJob = new PeriodicJobAPI(this.config);
+    this.tag = new TagApi(this.config);
+    this.industry = new IndustryApi(this.config);
+    this.shortLink = new ShortLinkApi(this.config);
   }
 
   async request(service: string, params: SDKRequestParams): Promise<any> {
