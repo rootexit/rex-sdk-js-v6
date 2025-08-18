@@ -4,6 +4,7 @@
 /build
 /tmp
 .idea
+.vscode
 
 # Logs
 logs
