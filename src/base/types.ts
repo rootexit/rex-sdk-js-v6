@@ -11,10 +11,10 @@ export type ModelCode = {
 
 export type CodesResp = {
   data: {
-    list?: ModelCode[];
-    total?: number;
-    page?: number;
-    page_size?: number;
+    list: ModelCode[];
+    total: number;
+    page: number;
+    page_size: number;
   };
 };
 
@@ -22,17 +22,17 @@ export type ZonesReq = {
   lang?: string;
 };
 
-export type ZonesResp = {
-  data: {
-    list?: ModelZone[];
-    total?: number;
-    page?: number;
-    page_size?: number;
-  };
-};
-
 type ModelZone = {
   label: string;
   code: string;
   area: string;
+};
+
+export type ZonesResp = {
+  data: {
+    list: ModelZone[];
+    total: number;
+    page: number;
+    page_size: number;
+  };
 };

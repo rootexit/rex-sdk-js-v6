@@ -1,28 +1,22 @@
 import { signRequest } from './signer';
 import type { SDKConfig, SDKRequestParams } from './types';
 import { BaseApi } from './base/base';
-import { AKCApi } from './kms/akc';
-import { SKCApi } from './kms/skc';
+import { KMSApi } from './kms';
+import { UPSApi } from './ups';
 import { MASApi } from './mas';
 import { SASApi } from './sas';
 import { TPASApi } from './tpas';
-import { PeriodicJobAPI } from './ctas/periodicJob';
-import { TagApi } from './ups/tag';
-import { IndustryApi } from './ups/industry';
-import { ShortLinkApi } from './ups/shortLink';
+import { CTASApi } from './ctas';
 
 export class RExSdk {
   private config: SDKConfig;
   public base: BaseApi;
-  public akc: AKCApi;
-  public skc: SKCApi;
+  public kms: KMSApi;
+  public ups: UPSApi;
   public mas: MASApi;
   public sas: SASApi;
   public tpas: TPASApi;
-  public periodicJob: PeriodicJobAPI;
-  public tag: TagApi;
-  public industry: IndustryApi;
-  public shortLink: ShortLinkApi;
+  public ctas: CTASApi;
 
   constructor(config: SDKConfig) {
     if (config.env == undefined || config.env == null || config.env == '' || config.env.length <= 0) {
@@ -48,15 +42,12 @@ export class RExSdk {
     }
     this.config = config;
     this.base = new BaseApi(this.config);
-    this.akc = new AKCApi(this.config);
-    this.skc = new SKCApi(this.config);
+    this.kms = new KMSApi(this.config);
+    this.ups = new UPSApi(this.config);
     this.mas = new MASApi(this.config);
     this.sas = new SASApi(this.config);
     this.tpas = new TPASApi(this.config);
-    this.periodicJob = new PeriodicJobAPI(this.config);
-    this.tag = new TagApi(this.config);
-    this.industry = new IndustryApi(this.config);
-    this.shortLink = new ShortLinkApi(this.config);
+    this.ctas = new CTASApi(this.config);
   }
 
   async request(service: string, params: SDKRequestParams): Promise<any> {
