@@ -3,14 +3,15 @@ require('dotenv').config();
 
 const { RExSdk } = require('../dist/index.js');
 const sdk = new RExSdk({
-  accessKeyId: process.env.ACCESS_KEY_ID,
-  secretAccessKey: process.env.ACCESS_KEY_SECRET
+  accessKeyId: "REx6e3d9840ded9d518",
+  secretAccessKey: "519d2c4147788ff3567f4532fbeea257",
+  env: "dev",
 });
 
-sdk.base.codes().then(res => {
-  console.log('Code Result:', res.data.list);
+sdk.shortLink.QueryWhereKey({key: "1nvGySZACAHZQlg1X"}).then(res => {
+  console.log('Code Result:', res.data);
 });
 
-sdk.base.zones().then(res => {
-  console.log('zone Result:', res);
-});
+// sdk.base.zones().then(res => {
+//   console.log('zone Result:', res);
+// });

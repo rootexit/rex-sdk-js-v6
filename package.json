@@ -29,6 +29,7 @@
     "@aws-crypto/sha256-js": "^5.2.0",
     "@smithy/protocol-http": "^5.1.2",
     "@smithy/signature-v4": "^5.1.2",
+    "@smithy/types": "^4.3.2",
     "@types/node": "^24.0.14",
     "cross-fetch": "^4.1.0",
     "dotenv": "^17.2.0",

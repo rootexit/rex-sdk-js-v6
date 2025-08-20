@@ -8,6 +8,11 @@
     <script type="module">
       import { RExSdk } from '../dist/index.mjs';
       console.log('🚀 ~ RExSdk:', RExSdk);
+      const sdk = new RExSdk({
+        appId: 'your-app-id',
+        appSecret: 'your-app-secret',
+        env: "dev",
+      });
     </script>
   </head>
   <body></body>

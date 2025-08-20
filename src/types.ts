@@ -1,3 +1,4 @@
+import { type QueryParameterBag } from "@smithy/types";
 export type BaseApiResult = {
   code: number;
   msg: string;
@@ -23,4 +24,5 @@ export interface SDKRequestParams {
   path: string;
   headers?: Record<string, string>;
   body?: object;
+  query?: QueryParameterBag;
 }

@@ -191,17 +191,27 @@ export class ShortLinkApi {
   async QueryWhereKey(params: ShortLinkApiFormKeyReq): Promise<BaseApiResult & ModelShortLink> {
     let url = '/ups/shortLink/queryWhereKey';
 
-    const queryString = new URLSearchParams(String(params)).toString();
-    if (queryString) {
-      url += `?${queryString}`;
-    }
-
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'GET',
-      headers: {}
+      headers: {},
+      query: { key: params.key }
     });
-    const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
+
+    // 使用 URL 和 URLSearchParams
+
+    const reqUrl = new URL(`${signed.protocol}/${signed.hostname}${signed.path}`);
+    
+    Object.entries(signed.query).forEach(([k, v]) => {
+      if (v === null || v === undefined) return;
+      if (Array.isArray(v)) {
+        v.forEach(item => reqUrl.searchParams.append(k, item));
+      } else {
+        reqUrl.searchParams.append(k, v);
+      }
+    });
+    
+    const res = await fetch(reqUrl.toString(), {
       method: signed.method,
       headers: signed.headers,
       body: signed.body

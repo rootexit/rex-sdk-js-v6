@@ -23,8 +23,17 @@ export async function signRequest(config: SDKConfig, service: string, params: SD
       host: config.host!,
       ...params.headers
     },
-    body: JSON.stringify(params.body)
   });
+
+  if (params.body) {
+    request.body = JSON.stringify(params.body);
+  }
+
+  if (params.query) {
+    request.query = params.query;
+  }
+  
+
   const signed = await signer.sign(request);
 
   return signed as HttpRequest;
