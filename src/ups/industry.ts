@@ -8,6 +8,7 @@ import {
     IndustryApiJsonIdsReq,
     IndustryApiOKResp, IndustryCommonQueryListResp, IndustryCommonSearchParams, ModelIndustry
 } from './types';
+import {convertNumbersToStrings} from "../utils";
 
 export class IndustryApi {
     private config: SDKConfig;
@@ -162,18 +163,24 @@ export class IndustryApi {
     /* 查询单个 */
     async Query(params: IndustryApiFormIdReq): Promise<BaseApiResult & ModelIndustry> {
         let url = '/ups/industry/query';
-
-        const queryString = new URLSearchParams(String(params)).toString();
-        if (queryString) {
-            url += `?${queryString}`;
-        }
-
         const signed = await signRequest(this.config, this.service, {
             path: url,
             method: 'GET',
             headers: {},
+            query: convertNumbersToStrings(params)
         });
-        const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
+
+        const reqUrl = new URL(`${signed.protocol}/${signed.hostname}${signed.path}`);
+        Object.entries(signed.query).forEach(([k, v]) => {
+            if (v === null || v === undefined) return;
+            if (Array.isArray(v)) {
+                v.forEach(item => reqUrl.searchParams.append(k, item));
+            } else {
+                reqUrl.searchParams.append(k, v);
+            }
+        });
+
+        const res = await fetch(reqUrl, {
             method: signed.method,
             headers: signed.headers,
             body: signed.body

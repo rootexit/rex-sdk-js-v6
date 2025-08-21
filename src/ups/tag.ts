@@ -12,6 +12,7 @@ import {
     TagCommonQueryListResp,
     ModelTag
 } from './types';
+import {convertNumbersToStrings} from "../utils";
 
 export class TagApi {
     private config: SDKConfig;
@@ -166,18 +167,24 @@ export class TagApi {
     /* 查询单个 */
     async Query(params: TagApiFormIdReq): Promise<BaseApiResult & ModelTag> {
         let url = '/ups/tag/query';
-
-        const queryString = new URLSearchParams(String(params)).toString();
-        if (queryString) {
-            url += `?${queryString}`;
-        }
-
         const signed = await signRequest(this.config, this.service, {
             path: url,
             method: 'GET',
             headers: {},
+            query: convertNumbersToStrings(params)
         });
-        const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
+
+        const reqUrl = new URL(`${signed.protocol}/${signed.hostname}${signed.path}`);
+        Object.entries(signed.query).forEach(([k, v]) => {
+            if (v === null || v === undefined) return;
+            if (Array.isArray(v)) {
+                v.forEach(item => reqUrl.searchParams.append(k, item));
+            } else {
+                reqUrl.searchParams.append(k, v);
+            }
+        });
+
+        const res = await fetch(reqUrl, {
             method: signed.method,
             headers: signed.headers,
             body: signed.body
