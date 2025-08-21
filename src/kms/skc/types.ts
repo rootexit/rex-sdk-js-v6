@@ -27,9 +27,7 @@ type KmsSkcBatchEncryptReqItem = {
     base_data: string;
 }
 
-export type KmsSkcBatchEncryptReq = {
-    data: Record<string, KmsSkcBatchEncryptReqItem>;
-}
+export type KmsSkcBatchEncryptReq = KmsSkcBatchEncryptReqItem
 
 type KmsSkcBatchEncryptRespItem = {
     name: string;
@@ -37,7 +35,7 @@ type KmsSkcBatchEncryptRespItem = {
 }
 
 export type KmsSkcBatchEncryptResp = {
-    data: Record<string, KmsSkcBatchEncryptRespItem>;
+    data: {};
 }
 
 export type KmsSkcDecryptReq = {
@@ -57,9 +55,7 @@ type KmsSkcBatchDecryptReqItem = {
     base_data: string
 }
 
-export type KmsSkcBatchDecryptReq = {
-    data: Record<string, KmsSkcBatchDecryptReqItem>;
-}
+export type KmsSkcBatchDecryptReq = KmsSkcBatchDecryptReqItem
 
 type KmsSkcBatchDecryptRespItem = {
     name: string
@@ -67,16 +63,12 @@ type KmsSkcBatchDecryptRespItem = {
 }
 
 export type KmsSkcBatchDecryptResp = {
-    data: Record<string, KmsSkcBatchDecryptRespItem>;
-}
-
-type KmsSkcCompareItem = {
-    name: string
-    base_data: string
+    data: {};
 }
 
 export interface KmsSkcCompareReq {
-    list: KmsSkcCompareItem[];
+    name: string
+    base_data: string
 }
 
 type KmsSkcCompareRespDataItem = {

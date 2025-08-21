@@ -2,12 +2,20 @@ import type {SDKConfig, BaseApiResult} from '../types';
 import {signRequest} from '../signer';
 import {
     AllowCreateModelShortLink,
-    AllowUpdateModelShortLink, AllowUpdateStatusModelShortLink, ModelShortLink,
+    AllowUpdateModelShortLink,
+    AllowUpdateStatusModelShortLink,
+    GetRedirectResultReq,
+    GetRedirectResultResp,
+    ModelShortLink,
     ShortLinkApiCreateResp,
     ShortLinkApiFormIdReq,
+    ShortLinkApiFormKeyReq,
     ShortLinkApiJsonIdsReq,
-    ShortLinkApiOKResp, ShortLinkCommonQueryListResp, ShortLinkCommonSearchParams
+    ShortLinkApiOKResp,
+    ShortLinkCommonQueryListResp,
+    ShortLinkCommonSearchParams
 } from './types';
+import {convertNumbersToStrings} from "../utils";
 
 export class ShortLinkApi {
     private config: SDKConfig;
@@ -48,9 +56,20 @@ export class ShortLinkApi {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: params
+            query: convertNumbersToStrings(params),
         });
-        const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
+
+        const reqUrl = new URL(`${signed.protocol}/${signed.hostname}${signed.path}`);
+        Object.entries(signed.query).forEach(([k, v]) => {
+            if (v === null || v === undefined) return;
+            if (Array.isArray(v)) {
+                v.forEach(item => reqUrl.searchParams.append(k, item));
+            } else {
+                reqUrl.searchParams.append(k, v);
+            }
+        });
+
+        const res = await fetch(reqUrl, {
             method: signed.method,
             headers: signed.headers,
             body: signed.body
@@ -120,7 +139,7 @@ export class ShortLinkApi {
     }
 
     /* 批量查询 */
-    async QueryList(params: ShortLinkCommonSearchParams): Promise<BaseApiResult & ShortLinkCommonQueryListResp> {
+    async QueryList(params?: ShortLinkCommonSearchParams): Promise<BaseApiResult & ShortLinkCommonQueryListResp> {
         let url = '/ups/shortLink/queryList';
 
         const signed = await signRequest(this.config, this.service, {
@@ -163,15 +182,70 @@ export class ShortLinkApi {
     async Query(params: ShortLinkApiFormIdReq): Promise<BaseApiResult & ModelShortLink> {
         let url = '/ups/shortLink/query';
 
-        const queryString = new URLSearchParams(String(params)).toString();
-        if (queryString) {
-            url += `?${queryString}`;
-        }
+        const signed = await signRequest(this.config, this.service, {
+            path: url,
+            method: 'GET',
+            headers: {},
+            query: convertNumbersToStrings(params)
+        });
+
+        const reqUrl = new URL(`${signed.protocol}/${signed.hostname}${signed.path}`);
+        Object.entries(signed.query).forEach(([k, v]) => {
+            if (v === null || v === undefined) return;
+            if (Array.isArray(v)) {
+                v.forEach(item => reqUrl.searchParams.append(k, item));
+            } else {
+                reqUrl.searchParams.append(k, v);
+            }
+        });
+
+        const res = await fetch(reqUrl, {
+            method: signed.method,
+            headers: signed.headers,
+            body: signed.body
+        });
+        return res.json();
+    }
+
+    async QueryWhereKey(params: ShortLinkApiFormKeyReq): Promise<BaseApiResult & ModelShortLink> {
+        let url = '/ups/shortLink/queryWhereKey';
 
         const signed = await signRequest(this.config, this.service, {
             path: url,
             method: 'GET',
             headers: {},
+            query: params // 这里传入查询参数对象
+        });
+
+        const reqUrl = new URL(`${signed.protocol}/${signed.hostname}${signed.path}`);
+        Object.entries(signed.query).forEach(([k, v]) => {
+            if (v === null || v === undefined) return;
+            if (Array.isArray(v)) {
+                v.forEach(item => reqUrl.searchParams.append(k, item));
+            } else {
+                reqUrl.searchParams.append(k, v);
+            }
+        });
+
+        const res = await fetch(reqUrl, {
+            method: signed.method,
+            headers: signed.headers,
+            body: signed.body
+        });
+
+        return res.json();
+    }
+
+    async GetRedirectResult(params: GetRedirectResultReq): Promise<BaseApiResult & GetRedirectResultResp> {
+        let url = '/ups/shortLink/getRedirectResult';
+
+        const signed = await signRequest(this.config, this.service, {
+            path: url,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: params
         });
         const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
             method: signed.method,

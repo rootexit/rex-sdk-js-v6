@@ -118,7 +118,7 @@ export class SKCApi {
     }
 
     /* 对比 */
-    async KmsSkcCompare(params: KmsSkcCompareReq): Promise<BaseApiResult & KmsSkcCompareResp> {
+    async KmsSkcCompare(params: Array<KmsSkcCompareReq>): Promise<BaseApiResult & KmsSkcCompareResp> {
         let url = '/kms/skc/compare';
 
         const signed = await signRequest(this.config, this.service, {

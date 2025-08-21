@@ -1,26 +1,29 @@
+import {type QueryParameterBag} from "@smithy/types";
+
 export type BaseApiResult = {
-  code: number;
-  msg: string;
-  request_id: string;
-  path: string;
+    code: number;
+    msg: string;
+    request_id: string;
+    path: string;
 };
 
 export interface SDKConfigBase {
-  region?: string;
-  host?: string;
-  env?: string;
-  version?: string;
-  protocol?: string;
+    region?: string;
+    host?: string;
+    env?: string;
+    version?: string;
+    protocol?: string;
 }
 
 export interface SDKConfig extends SDKConfigBase {
-  accessKeyId: string;
-  secretAccessKey: string;
+    accessKeyId: string;
+    secretAccessKey: string;
 }
 
 export interface SDKRequestParams {
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
-  path: string;
-  headers?: Record<string, string>;
-  body?: object;
+    method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+    path: string;
+    headers?: Record<string, string>;
+    body?: object;
+    query?: QueryParameterBag;
 }

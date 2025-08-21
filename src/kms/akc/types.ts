@@ -41,12 +41,12 @@ export type KmsAkcSignReq = {
 export type KmsAkcVerifyResp = {
     data: {
         name: string;
-        verify: string;
+        verify: boolean;
     };
 };
 
 export type KmsAkcVerifyReq = {
-    name: '';
-    sign_content: '';
-    sign: '';
+    name: string;
+    sign_content: string;
+    sign: string;
 };
