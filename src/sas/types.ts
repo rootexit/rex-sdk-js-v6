@@ -1,5 +1,5 @@
 export type SasQueryBucketReq = {
-    bucket_key: string
+    bucket_key?: string
 }
 
 export type SasQueryBucketResp = {
@@ -17,7 +17,7 @@ export type SasQueryBucketResp = {
 }
 
 export type SasPresignerHeadObjectReq = {
-    bucket_key: string
+    bucket_key?: string
     path: string
 }
 
@@ -29,7 +29,7 @@ export type SasPresignerHeadObjectResp = {
 }
 
 export type SasPresignerUploadReq = {
-    bucket_key: string
+    bucket_key?: string
     path: string
 }
 
@@ -41,12 +41,12 @@ export type SasPresignerUploadResp = {
 }
 
 export type CreateExistBucketAndConfigReq = {
-    config_key: string
+    config_key?: string
     storage_type: string
-    app_id: string
+    app_id?: string
     access_key: string
     access_secret: string
-    bucket_key: string
+    bucket_key?: string
     name: string
     region: string
     is_accelerate: number
@@ -58,8 +58,8 @@ export type CreateExistBucketAndConfigReq = {
 export type CreateExistBucketAndConfigResp = {}
 
 export type CreateExistBucketNoConfigReq = {
-    config_key: string
-    bucket_key: string
+    config_key?: string
+    bucket_key?: string
     name: string
     region: string
     is_accelerate: number
@@ -71,7 +71,7 @@ export type CreateExistBucketNoConfigReq = {
 export type CreateExistBucketNoConfigResp = {}
 
 export type SasPresignerGetObjectReq = {
-    bucket_key: string
+    bucket_key?: string
     path: string
 }
 

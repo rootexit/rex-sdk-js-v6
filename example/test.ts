@@ -441,3 +441,114 @@ const sdk = new RExSdk({
 }).then(res => {
     console.log(res)
 })*/
+
+/**
+ * 查询bucket信息
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.bucket_key - （可选） 桶名称
+ * @returns {Promise<SasQueryBucketResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.sas.base.QueryBucket({
+    bucket_key: ''
+}).then(res => {
+    console.log(res)
+})*/
+
+/**
+ * 预签名获取headObject
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.bucket_key - （可选） 桶名称
+ * @param {string} params.path - 地址
+ * @returns {Promise<SasPresignerHeadObjectResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.sas.base.PresignerHeadObject({
+    bucket_key: '',
+    path: ''
+}).then(res => {
+    console.log(res)
+})*/
+
+/**
+ * 预签名获取headObject
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.bucket_key - （可选） 桶名称
+ * @param {string} params.path - 地址
+ * @returns {Promise<SasPresignerUploadResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.sas.base.PresignerUpload({
+    bucket_key: '',
+    path: ''
+}).then(res => {
+    console.log(res)
+})*/
+
+/**
+ * 创建云端已经存在的bucket和配置 例如阿里云的配置项 填写在下面即可
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.config_key - （可选） 凭证
+ * @param {string} params.storage_type - 对象存储的类型-oss|cos|s3
+ * @param {string} params.app_id - （可选） cos独有字段
+ * @param {string} params.access_key - 访问凭证的key
+ * @param {string} params.access_secret - 访问凭证的密钥
+ * @param {string} params.bucket_key - （可选） 配置名称
+ * @param {string} params.name - 存储桶的名字
+ * @param {string} params.region - 存储桶的地区
+ * @param {number} params.is_accelerate - 是否开启传输加速-1->否,2-是
+ * @returns {Promise<CreateExistBucketAndConfigResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.sas.base.CreateBucketAndConfig({
+    config_key: '',
+    storage_type: '',
+    app_id: '',
+    access_key: '',
+    access_secret: '',
+    bucket_key: '',
+    name: '',
+    region: '',
+    is_accelerate: 0,
+    prefix: '',
+    static_domain: '',
+    cdn_domain: '',
+}).then(res => {
+    console.log(res)
+})*/
+
+/**
+ * 预签名获取headObject
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.config_key - （可选） 凭证
+ * @param {string} params.bucket_key - （可选） 配置
+ * @param {string} params.name - 存储桶的名字
+ * @param {string} params.region - 存储桶的地区
+ * @param {string} params.is_accelerate - 是否开启传输加速-1->否,2-是
+ * @param {string} params.prefix - 存储文件夹
+ * @param {string} params.static_domain - 静态域名
+ * @param {string} params.cdn_domain - cdn加速域名
+ * @returns {Promise<CreateExistBucketNoConfigResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.sas.base.CreateBucketNoConfig({
+    config_key: '',
+    bucket_key: '',
+    name: '',
+    region: '',
+    is_accelerate: 1,
+    prefix: '',
+    static_domain: '',
+    cdn_domain: '',
+}).then(res => {
+    console.log(res)
+})*/
+
+/**
+ * 预签名获取headObject
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.bucket_key - （可选） 桶名称
+ * @param {string} params.path - 地址
+ * @returns {Promise<SasPresignerGetObjectResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.sas.base.PresignerGet({
+    bucket_key: '',
+    path: '',
+}).then(res => {
+    console.log(res)
+})*/

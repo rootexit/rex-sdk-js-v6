@@ -37,7 +37,7 @@ const sdk = new RExSdk({
  * @param {string} params.svc - 服务标识符
  * @returns {Promise<BaseApiResult & CodesResp>} 返回基础API结果和代码表数据的联合类型
  */
-sdk.base.codes({}).then((res: BaseApiResult & CodesResp) => {
+sdk.base.codes().then((res: BaseApiResult & CodesResp) => {
   console.log('codes Result:', res);
 });
 
@@ -47,7 +47,7 @@ sdk.base.codes({}).then((res: BaseApiResult & CodesResp) => {
  * @param {string} [params.lang='zh-CN'] - 语言代码-默认中文
  * @returns {Promise<BaseApiResult & ZonesResp>} 返回基础API结果和代码表数据的联合类型
  */
-sdk.base.zones({}).then((res: BaseApiResult & ZonesResp) => {
+sdk.base.zones().then((res: BaseApiResult & ZonesResp) => {
   console.log('zones Result:', res);
 });
 ```
@@ -102,11 +102,11 @@ sdk.mas.base.BehavioralVerificationVerify({
  * @returns {Promise<SmsInitResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.mas.base.SmsVerificationInit({
-    key: "cigarette",
-    service: "https://dev-account.lilsite.com/",
-    type: "loginSms",
-    zone: "+86",
-    phone: "17344880413",
+    key: "",
+    service: "",
+    type: "",
+    zone: "",
+    phone: "",
 }).then(res => {
     console.log(res)
 })
@@ -143,7 +143,7 @@ sdk.mas.base.SmsVerificationVerify({
  * @returns {Promise<ApiCaptchaGenerateResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.mas.base.CaptchaGenerate({
-    key: "cigarette",
+    key: "default",
     dot_count: 2,
     max_skew: 3,
     key_long: 4,
@@ -180,12 +180,12 @@ sdk.mas.base.SmsSend({
  * @param {string} params.name - 名称
  * @returns {Promise<KmsAkcCreateKeychainResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.kms.akc.KmsAkcCreateKeychain({
+sdk.kms.akc.KmsAkcCreateKeychain({
     cert_type: 'RSA-3072',
-    name: 'cigarette',
+    name: 'default',
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 获取公钥
@@ -193,11 +193,11 @@ sdk.mas.base.SmsSend({
  * @param {string} params.name - 名称
  * @returns {Promise<KmsAkcGetKeychainPublicKeyResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.kms.akc.KmsAkcGetKeychainPublicKey({
-    name: 'cigarette',
+sdk.kms.akc.KmsAkcGetKeychainPublicKey({
+    name: 'default',
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 签名
@@ -206,12 +206,12 @@ sdk.mas.base.SmsSend({
  * @param {string} params.sign_content - 加密内容
  * @returns {Promise<KmsAkcSignResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.kms.akc.KmsAkcSign({
-    name: 'cigarette',
+sdk.kms.akc.KmsAkcSign({
+    name: 'default',
     sign_content: 'strawberry',
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 校验
@@ -221,13 +221,13 @@ sdk.mas.base.SmsSend({
  * @param {string} params.sign - 加密内容
  * @returns {Promise<KmsAkcVerifyResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.kms.akc.KmsAkcVerify({
-    name: "cigarette",
+sdk.kms.akc.KmsAkcVerify({
+    name: "default",
     sign_content: "strawberry",
     sign: "eNYoN__CseChBOeKaOltT8UeJXyTPaZUsxOrpXIaL5UXKBZqQIYI_h5GyWWNk11T4YNW7IORygxWv5_Gzg-eAqnPLa_VPSpOGEtiR2mBdJmwyPBJhM0UpLrzcOKemfjDqUR1EYrjYVb3ddkOqcEeZdwoOZFLlgZNrkLUXjZZflWbJ_1Ac54xySkD-xesA4Edeo1nmG2JXCawIqfSL0ec9CpTqqFgpFGGSmrjqIJ6lcbpqPjc46_rmfKwCw-lEzwWBDUMMCPaf5awnicSYPW34MH5Vetwi7nwhe0JCG7H4T7oB3x7RD3SCeIAanLle0Q1xtQxmp1hrd7WXQiWBQTWVz57nE_Hvu2Zn2hJ6XxREF04xM7IQaulbVs4yIxUA6lwzFbv4AM6f4W6TS3S7JeIiPMDCMWE5Vp3Wbsr-4syLRP4061yOWfgWGvTYDQtV4iN62Rgtqb_RhZAsXQW6YCMRSFcpFCMSSbHos1RZ4DU8IrMc4oBjyP2uYP01qtcIIqM",
 }).then(res => {
     console.log(res)
-})*/
+})
 ```
 
 ### 2. 对称密钥模块(skc)
@@ -240,12 +240,12 @@ sdk.mas.base.SmsSend({
  * @param {string} params.algorithm - 密钥串加密算法-AES-128-GCM|AES-192-GCM|AES-256-GCM|AES-128-CBC|AES-192-CBC|AES-256-CBC|AES-128-CCM|AES-192-CCM|AES-256-CCM|AES-128-CTR|AES-192-CTR|AES-256-CTR
  * @returns {Promise<KmsSkcCreateKeychainResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.kms.skc.KmsSkcCreateKeychain({
+sdk.kms.skc.KmsSkcCreateKeychain({
     algorithm: 'AES-192-GCM',
-    name: 'cigarette',
+    name: 'default',
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 加密
@@ -254,12 +254,12 @@ sdk.mas.base.SmsSend({
  * @param {string} params.base_data - 加密内容
  * @returns {Promise<KmsSkcEncryptResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.kms.skc.KmsSkcEncrypt({
-    name: 'cigarette',
+sdk.kms.skc.KmsSkcEncrypt({
+    name: 'default',
     base_data: 'uWv0O5luUDd1QitSHDirnq04vC6gD0xQDgvU',
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 批量加密
@@ -268,12 +268,12 @@ sdk.mas.base.SmsSend({
  * @param {string} params.base_data - 内容
  * @returns {Promise<KmsSkcBatchEncryptResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.kms.skc.KmsSkcBatchEncrypt({
-    name: 'cigarette',
+sdk.kms.skc.KmsSkcBatchEncrypt({
+    name: 'default',
     base_data: 'strawberry',
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 解密
@@ -282,12 +282,12 @@ sdk.mas.base.SmsSend({
  * @param {string} params.base_data - 加密内容
  * @returns {Promise<KmsSkcDecryptResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.kms.skc.KmsSkcDecrypt({
-    name: 'cigarette',
+sdk.kms.skc.KmsSkcDecrypt({
+    name: 'default',
     base_data: 'VYs/2XMG7yMK4fkknAo3g/IUetQl7v58pHniB1syV65h8WulhEhnbxRksQ==',
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 批量解密
@@ -296,12 +296,12 @@ sdk.mas.base.SmsSend({
  * @param {string} params.base_data - 加密内容
  * @returns {Promise<KmsSkcBatchDecryptResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.kms.skc.KmsSkcBatchDecrypt({
-    name: 'cigarette',
+sdk.kms.skc.KmsSkcBatchDecrypt({
+    name: 'default',
     base_data: 'VYs/2XMG7yMK4fkknAo3g/IUetQl7v58pHniB1syV65h8WulhEhnbxRksQ==',
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 对比
@@ -310,22 +310,131 @@ sdk.mas.base.SmsSend({
  * @param {string} params.base_data - 加密内容
  * @returns {Promise<KmsSkcBatchDecryptResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.kms.skc.KmsSkcCompare(
+sdk.kms.skc.KmsSkcCompare(
     [
         {
-            name: 'cigarette',
+            name: 'default',
             base_data: 'uWv0O5luUDd1QitSHDirnq04vC6gD0xQDgvU',
         }
     ]
 ).then(res => {
     console.log(res)
-})*/
+})
 ```
 
 ## 存储管理服务(sas)
 
 ``` javascript
+/**
+ * 查询bucket信息
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.bucket_key - （可选） 桶名称
+ * @returns {Promise<SasQueryBucketResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+sdk.sas.base.QueryBucket({
+    bucket_key: ''
+}).then(res => {
+    console.log(res)
+})
 
+/**
+ * 预签名获取headObject
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.bucket_key - （可选） 桶名称
+ * @param {string} params.path - 地址
+ * @returns {Promise<SasPresignerHeadObjectResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+sdk.sas.base.PresignerHeadObject({
+    bucket_key: '',
+    path: ''
+}).then(res => {
+    console.log(res)
+})
+
+/**
+ * 预签名获取headObject
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.bucket_key - （可选） 桶名称
+ * @param {string} params.path - 地址
+ * @returns {Promise<SasPresignerUploadResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+sdk.sas.base.PresignerUpload({
+    bucket_key: '',
+    path: ''
+}).then(res => {
+    console.log(res)
+})
+
+/**
+ * 创建云端已经存在的bucket和配置 例如阿里云的配置项 填写在下面即可
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.config_key - （可选） 凭证
+ * @param {string} params.storage_type - 对象存储的类型-oss|cos|s3
+ * @param {string} params.app_id - （可选） cos独有字段
+ * @param {string} params.access_key - 访问凭证的key
+ * @param {string} params.access_secret - 访问凭证的密钥
+ * @param {string} params.bucket_key - （可选） 配置名称
+ * @param {string} params.name - 存储桶的名字
+ * @param {string} params.region - 存储桶的地区
+ * @param {number} params.is_accelerate - 是否开启传输加速-1->否,2-是
+ * @returns {Promise<CreateExistBucketAndConfigResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+sdk.sas.base.CreateBucketAndConfig({
+    config_key: '',
+    storage_type: '',
+    app_id: '',
+    access_key: '',
+    access_secret: '',
+    bucket_key: '',
+    name: '',
+    region: '',
+    is_accelerate: 0,
+    prefix: '',
+    static_domain: '',
+    cdn_domain: '',
+}).then(res => {
+    console.log(res)
+})
+
+/**
+ * 预签名获取headObject
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.config_key - （可选） 凭证
+ * @param {string} params.bucket_key - （可选） 配置
+ * @param {string} params.name - 存储桶的名字
+ * @param {string} params.region - 存储桶的地区
+ * @param {string} params.is_accelerate - 是否开启传输加速-1->否,2-是
+ * @param {string} params.prefix - 存储文件夹
+ * @param {string} params.static_domain - 静态域名
+ * @param {string} params.cdn_domain - cdn加速域名
+ * @returns {Promise<CreateExistBucketNoConfigResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+sdk.sas.base.CreateBucketNoConfig({
+    config_key: '',
+    bucket_key: '',
+    name: '',
+    region: '',
+    is_accelerate: 1,
+    prefix: '',
+    static_domain: '',
+    cdn_domain: '',
+}).then(res => {
+    console.log(res)
+})
+
+/**
+ * 预签名获取headObject
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.bucket_key - （可选） 桶名称
+ * @param {string} params.path - 地址
+ * @returns {Promise<SasPresignerGetObjectResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+sdk.sas.base.PresignerGet({
+    bucket_key: '',
+    path: '',
+}).then(res => {
+    console.log(res)
+})
 ```
 
 ## 第三方聚合服务(tpas)
@@ -376,12 +485,12 @@ sdk.mas.base.SmsSend({
  * @param {string} params.creator_user_id - （可选） 创建的用户id
  * @returns {Promise<ShortLinkApiCreateResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.ups.shortLink.Create({
+sdk.ups.shortLink.Create({
     original_url: 'baidu.com',
     sl_type: 1,
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 删除单个
@@ -389,11 +498,11 @@ sdk.mas.base.SmsSend({
  * @param {number} params.id - id
  * @returns {Promise<ShortLinkApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.ups.shortLink.Delete({
+sdk.ups.shortLink.Delete({
     id: 5
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 批量删除
@@ -401,11 +510,11 @@ sdk.mas.base.SmsSend({
  * @param {Array<number>} params.ids - ids
  * @returns {Promise<ShortLinkApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.ups.shortLink.DeleteMany({
+sdk.ups.shortLink.DeleteMany({
     ids: [2, 3, 4]
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 更新基础信息
@@ -417,7 +526,7 @@ sdk.mas.base.SmsSend({
  * @param {string} params.creator_user_id - 创建的用户id
  * @returns {Promise<ShortLinkApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.ups.shortLink.Update({
+sdk.ups.shortLink.Update({
     id: 8,
     original_url: 'baidu.com',
     sl_type: 1,
@@ -425,7 +534,7 @@ sdk.mas.base.SmsSend({
     creator_user_id: ''
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 更新状态
@@ -434,12 +543,12 @@ sdk.mas.base.SmsSend({
  * @param {number} params.status - 状态
  * @returns {Promise<ShortLinkApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.ups.shortLink.UpdateStatus({
+sdk.ups.shortLink.UpdateStatus({
     id: 8,
     status: 1
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 更新状态
@@ -452,9 +561,9 @@ sdk.mas.base.SmsSend({
  * @param {number} params.status - 状态
  * @returns {Promise<ShortLinkCommonQueryListResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.ups.shortLink.QueryList().then(res => {
+sdk.ups.shortLink.QueryList().then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 批量查询根据ids
@@ -462,11 +571,11 @@ sdk.mas.base.SmsSend({
  * @param {Array<number>} params.ids - ids
  * @returns {Promise<ShortLinkCommonQueryListResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.ups.shortLink.QueryListWhereIds({
+sdk.ups.shortLink.QueryListWhereIds({
     ids: [8]
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 查询单个
@@ -474,11 +583,11 @@ sdk.mas.base.SmsSend({
  * @param {number} params.id - id
  * @returns {Promise<ModelShortLink & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.ups.shortLink.Query({
+sdk.ups.shortLink.Query({
     id: 8
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 根据key查找
@@ -486,11 +595,11 @@ sdk.mas.base.SmsSend({
  * @param {string} params.key - key
  * @returns {Promise<ModelShortLink & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.ups.shortLink.QueryWhereKey({
+sdk.ups.shortLink.QueryWhereKey({
     key: 'hRAQ4caXIhfwbpq3'
 }).then(res => {
     console.log(res)
-})*/
+})
 
 /**
  * 获取重定向信息

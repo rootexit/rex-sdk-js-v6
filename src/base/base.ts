@@ -12,7 +12,7 @@ export class BaseApi {
         this.service = 'base';
     }
 
-    async codes(params: CodesReq): Promise<BaseApiResult & CodesResp> {
+    async codes(params?: CodesReq): Promise<BaseApiResult & CodesResp> {
         let url = '/base/codes';
 
         const signed = await signRequest(this.config, this.service, {
@@ -40,7 +40,7 @@ export class BaseApi {
         return res.json();
     }
 
-    async zones(params: ZonesReq): Promise<BaseApiResult & ZonesResp> {
+    async zones(params?: ZonesReq): Promise<BaseApiResult & ZonesResp> {
         let url = '/base/zones';
         const signed = await signRequest(this.config, this.service, {
             path: url,

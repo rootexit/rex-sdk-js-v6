@@ -25,7 +25,7 @@ export class BaseApi {
   }
 
   /* 查询bucket信息 */
-  async QueryBucket(params: SasQueryBucketReq): Promise<BaseApiResult & SasQueryBucketResp> {
+  async QueryBucket(params?: SasQueryBucketReq): Promise<BaseApiResult & SasQueryBucketResp> {
     let url = '/sas/queryBucket';
 
     const signed = await signRequest(this.config, this.service, {
