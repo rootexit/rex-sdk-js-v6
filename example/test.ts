@@ -25,7 +25,6 @@ import {RExSdk} from '../src/index';
 const sdk = new RExSdk({
     accessKeyId: process.env.ACCESS_KEY_ID as string,
     secretAccessKey: process.env.ACCESS_KEY_SECRET as string,
-    env: 'dev'
 });
 
 /**
@@ -60,7 +59,7 @@ const sdk = new RExSdk({
 /*sdk.mas.base
     .BehavioralVerificationInit({
         service: '',
-        type: '',
+        type: 'loginSms',
         key: ''
     })
     .then((res: BehavioralVerificationInitResp & BaseApiResult) => {
@@ -77,9 +76,9 @@ const sdk = new RExSdk({
  * @returns {Promise<BehavioralVerificationVerifyResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 /*sdk.mas.base.BehavioralVerificationVerify({
-    id: '',
+    id: 'Octs9cMVzKdu4Q9VkOVs',
     service: '',
-    type: '',
+    type: 'loginSms',
     verify_code: '',
 }).then(res => {
     console.log(res)
@@ -96,11 +95,11 @@ const sdk = new RExSdk({
  * @returns {Promise<SmsInitResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 /*sdk.mas.base.SmsVerificationInit({
-    key: "cigarette",
-    service: "https://dev-account.lilsite.com/",
+    key: "",
+    service: "",
     type: "loginSms",
     zone: "+86",
-    phone: "17344880413",
+    phone: "",
 }).then(res => {
     console.log(res)
 })*/
@@ -117,8 +116,8 @@ const sdk = new RExSdk({
  */
 /*sdk.mas.base.SmsVerificationVerify({
     service: '',
-    type: '',
-    zone: '',
+    type: 'loginSms',
+    zone: '+86',
     phone: '',
     verify_code: '',
 }).then(res => {
@@ -469,7 +468,7 @@ const sdk = new RExSdk({
 })*/
 
 /**
- * 预签名获取headObject
+ * 预签名上传
  * @param {Object} params - 请求参数对象
  * @param {string} params.bucket_key - （可选） 桶名称
  * @param {string} params.path - 地址
@@ -514,7 +513,7 @@ const sdk = new RExSdk({
 })*/
 
 /**
- * 预签名获取headObject
+ * 创建云端已经存在的bucket(使用已经存在的配置)
  * @param {Object} params - 请求参数对象
  * @param {string} params.config_key - （可选） 凭证
  * @param {string} params.bucket_key - （可选） 配置
@@ -540,7 +539,7 @@ const sdk = new RExSdk({
 })*/
 
 /**
- * 预签名获取headObject
+ * 预签名下载
  * @param {Object} params - 请求参数对象
  * @param {string} params.bucket_key - （可选） 桶名称
  * @param {string} params.path - 地址
@@ -548,7 +547,7 @@ const sdk = new RExSdk({
  */
 /*sdk.sas.base.PresignerGet({
     bucket_key: '',
-    path: '',
+    path: ''
 }).then(res => {
     console.log(res)
 })*/

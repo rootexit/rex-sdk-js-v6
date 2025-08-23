@@ -353,7 +353,7 @@ sdk.sas.base.PresignerHeadObject({
 })
 
 /**
- * 预签名获取headObject
+ * 预签名上传
  * @param {Object} params - 请求参数对象
  * @param {string} params.bucket_key - （可选） 桶名称
  * @param {string} params.path - 地址
@@ -398,7 +398,7 @@ sdk.sas.base.CreateBucketAndConfig({
 })
 
 /**
- * 预签名获取headObject
+ * 创建云端已经存在的bucket(使用已经存在的配置)
  * @param {Object} params - 请求参数对象
  * @param {string} params.config_key - （可选） 凭证
  * @param {string} params.bucket_key - （可选） 配置
@@ -424,7 +424,7 @@ sdk.sas.base.CreateBucketNoConfig({
 })
 
 /**
- * 预签名获取headObject
+ * 预签名下载
  * @param {Object} params - 请求参数对象
  * @param {string} params.bucket_key - （可选） 桶名称
  * @param {string} params.path - 地址
