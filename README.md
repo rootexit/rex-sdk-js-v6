@@ -77,7 +77,7 @@ sdk.mas.base
 /**
  * 人机验证【验证码校验】
  * @param {Object} params - 请求参数对象
- * @param {string} params.id - 配置key
+ * @param {number} params.id - 配置key
  * @param {string} params.service - 服务
  * @param {string} params.type - 类型-login/loginSms/security/register
  * @param {string} params.verify_code - 验证码
@@ -443,7 +443,91 @@ sdk.sas.base.PresignerGet({
 ### 1. 微信公众号
 
 ``` javascript
+/**
+ * 强制刷新某个公众号的凭证
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.key - key
+ * @returns {Promise<WechatForceRefreshOffiaccountAccessTokenResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+sdk.tpas.wechatOffiaccount.ForceRefreshOffiaccountAccessToken({
+    key: ""
+}).then(result => {
+    console.log(result)
+})
 
+/**
+ * 获取公众号普通AccessToken
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.key - （可选） key
+ * @returns {Promise<WechatOffiaccountGetAccessTokenResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+sdk.tpas.wechatOffiaccount.GetAccessToken({
+    key: ""
+}).then(result => {
+    console.log(result)
+})
+
+/**
+ * 获取公众号JsApiTicket
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.key - （可选） key
+ * @returns {Promise<WechatOffiaccountGetJsApiTicketResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+sdk.tpas.wechatOffiaccount.GetJsApiTicket({
+    key: ""
+}).then(result => {
+    console.log(result)
+})
+
+/**
+ * 生成重定向授权链接
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.key - （可选） key
+ * @param {string} params.scope - snsapi_base| snsapi_userinfo
+ * @param {string} params.redirect_uri -
+ * @param {string} params.state -
+ * @returns {Promise<WechatOffiaccountGenRedirectUrlResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+sdk.tpas.wechatOffiaccount.GenRedirectUrl({
+    key: '',
+    scope: 'snsapi_base',
+    redirect_uri: 'baidu.com',
+    state: '',
+}).then(result => {
+    console.log(result)
+})
+
+/**
+ * 生成分享配置注入
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.key - （可选） key
+ * @param {boolean} params.debug -
+ * @param {string} params.share_link -
+ * @param {Array<[string]>} params.js_api_list -
+ * @returns {Promise<WechatOffiaccountGenShareConfigResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+sdk.tpas.wechatOffiaccount.GenShareConfig({
+    key: '',
+    debug: true,
+    share_link: 'baidu.com',
+    js_api_list: ['1', '2']
+}).then(result => {
+    console.log(result)
+})
+
+/**
+ * 微信公众号code换token
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.key - （可选） key
+ * @param {string} params.code -
+ * @returns {Promise<WechatOffiaccountCode2TokenResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+sdk.tpas.wechatOffiaccount.Code2Token({
+    key: '',
+    code: '',
+}).then(result => {
+    console.log(result)
+})
 ```
 
 ## 延迟任务服务
@@ -474,7 +558,7 @@ sdk.ctas.periodicJob.BehavioralVerificationInit({
 /**
  * 移除周期性任务
  * @param {Object} params - 请求参数对象
- * @param {string} params.id - 任务id
+ * @param {number} params.id - 任务id
  * @returns {Promise<CtasPeriodicJobRemoveResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ctas.periodicJob.BehavioralVerificationVerify({
@@ -508,7 +592,7 @@ sdk.ups.base.Create({
 /**
  * 删除单个 虚拟对象服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.id - id
+ * @param {number} params.id - id
  * @returns {Promise<ObjectApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.base.Delete({
@@ -520,7 +604,7 @@ sdk.ups.base.Delete({
 /**
  * 批量删除 虚拟对象服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.ids - ids
+ * @param {Array<number>} params.ids - ids
  * @returns {Promise<ObjectApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.base.DeleteMany({
@@ -532,7 +616,7 @@ sdk.ups.base.DeleteMany({
 /**
  * 查询单个 虚拟对象服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.id - id
+ * @param {number} params.id - id
  * @returns {Promise<ModelObject & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.base.Query({
@@ -544,7 +628,7 @@ sdk.ups.base.Query({
 /**
  * 批量查询根据ids 虚拟对象服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.ids - ids
+ * @param {Array<number>} params.ids - ids
  * @returns {Promise<ObjectCommonQueryListResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.base.QueryListWhereIds({
@@ -571,7 +655,7 @@ sdk.ups.base.QueryList().then(result => {
 /**
  * 更新基础信息 虚拟对象服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.id - id
+ * @param {number} params.id - id
  * @param {string} params.object_type - 对象类型
  * @param {string} params.properties - （可选） 静态属性
  * @returns {Promise<ObjectApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
@@ -599,8 +683,8 @@ sdk.ups.base.QueryWhereObjectId({
 /**
  * 更新状态 虚拟对象服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.id -
- * @param {string} params.status -
+ * @param {number} params.id -
+ * @param {number} params.status -
  * @returns {Promise<ObjectApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.base.UpdateStatus({
@@ -631,7 +715,7 @@ sdk.ups.tag.Create({
 /**
  * 更新基础信息 标签服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.id - id
+ * @param {number} params.id - id
  * @param {string} params.name - 标签名称
  * @param {string} params.sort - 排序
  * @returns {Promise<TagApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
@@ -647,7 +731,7 @@ sdk.ups.tag.Update({
 /**
  * 查询单个 标签服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.id - id
+ * @param {number} params.id - id
  * @returns {Promise<ModelTag & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.tag.Query({
@@ -674,7 +758,7 @@ sdk.ups.tag.QueryList().then(result => {
 /**
  * 批量查询根据ids 标签服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.ids - ids
+ * @param {Array<number>} params.ids - ids
  * @returns {Promise<TagCommonQueryListResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.tag.QueryListWhereIds({
@@ -686,7 +770,7 @@ sdk.ups.tag.QueryListWhereIds({
 /**
  * 删除单个 标签服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.id - id
+ * @param {number} params.id - id
  * @returns {Promise<TagApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.tag.Delete({
@@ -698,7 +782,7 @@ sdk.ups.tag.Delete({
 /**
  * 批量删除 标签服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.ids - ids
+ * @param {Array<number>} params.ids - ids
  * @returns {Promise<TagApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.tag.DeleteMany({
@@ -710,8 +794,8 @@ sdk.ups.tag.DeleteMany({
 /**
  * 更新状态 标签服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.id - id
- * @param {string} params.status - status
+ * @param {number} params.id - id
+ * @param {number} params.status - status
  * @returns {Promise<TagApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.tag.UpdateStatus({
@@ -748,7 +832,7 @@ sdk.ups.industry.Create({
 /**
  * 更新基础信息 行业服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.id - id
+ * @param {number} params.id - id
  * @param {string} params.name - 名称
  * @param {string} params.qualification - 资质文件
  * @param {string} params.qualification_link - 资质文件的相关link
@@ -773,8 +857,8 @@ sdk.ups.industry.Update({
 /**
  * 更新状态 行业服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.id - id
- * @param {string} params.status - status
+ * @param {number} params.id - id
+ * @param {number} params.status - status
  * @returns {Promise<IndustryApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.industry.UpdateStatus({
@@ -787,7 +871,7 @@ sdk.ups.industry.UpdateStatus({
 /**
  * 删除单个 行业服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.id - id
+ * @param {number} params.id - id
  * @returns {Promise<IndustryApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.industry.Delete({
@@ -799,7 +883,7 @@ sdk.ups.industry.Delete({
 /**
  * 批量删除 行业服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.ids - ids
+ * @param {Array<number>} params.ids - ids
  * @returns {Promise<IndustryApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.industry.DeleteMany({
@@ -811,7 +895,7 @@ sdk.ups.industry.DeleteMany({
 /**
  * 查询单个 行业服务
  * @param {Object} params - 请求参数对象
- * @param {string} params.id - id
+ * @param {number} params.id - id
  * @returns {Promise<ModelIndustry & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.industry.Query({
@@ -840,7 +924,7 @@ sdk.ups.industry.QueryList().then(result => {
 /**
  * 批量查询根据ids 行业服务
  * @param {Object} params - 请求参数对象
- * @param {number} params.ids - ids
+ * @param {Array<number>} params.ids - ids
  * @returns {Promise<IndustryCommonQueryListResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.industry.QueryListWhereIds({
