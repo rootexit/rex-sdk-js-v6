@@ -309,7 +309,7 @@ const sdk = new RExSdk({
  * 创建
  * @param {Object} params - 请求参数对象
  * @param {string} params.original_url - 地址
- * @param {1 | 2 | 3} params.sl_type - 类型-1 -> 一次性短链, 2 -> 有效期短链, 3 -> 永久短链
+ * @param {1 | 2 | 3} params.sl_type - （可选） 类型-1 -> 一次性短链, 2 -> 有效期短链, 3 -> 永久短链
  * @param {number} params.expire_at_unix - （可选） 过期时间
  * @param {string} params.creator_user_id - （可选） 创建的用户id
  * @returns {Promise<ShortLinkApiCreateResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
@@ -350,7 +350,7 @@ const sdk = new RExSdk({
  * @param {Object} params - 请求参数对象
  * @param {number} params.id - id
  * @param {string} params.original_url - 地址
- * @param {1 | 2 | 3} params.sl_type - 类型-1 -> 一次性短链, 2 -> 有效期短链, 3 -> 永久短链
+ * @param {1 | 2 | 3} params.sl_type - （可选） 类型-1 -> 一次性短链, 2 -> 有效期短链, 3 -> 永久短链
  * @param {number} params.expire_at_unix - 过期时间
  * @param {string} params.creator_user_id - 创建的用户id
  * @returns {Promise<ShortLinkApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
@@ -551,4 +551,388 @@ const sdk = new RExSdk({
     path: '',
 }).then(res => {
     console.log(res)
+})*/
+
+/**
+ * 添加周期性任务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.name - 任务名称
+ * @param {string} params.spec - cron表达式
+ * @param {string} params.webhook - 回调地址
+ * @param {string} params.params - 回调参数
+ * @param {string} params.secret - 回调密钥
+ * @returns {Promise<CtasPeriodicJobAddResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ctas.periodicJob.BehavioralVerificationInit({
+    name: '',
+    spec: '',
+    webhook: '',
+    params: '',
+    secret: '',
+}).then(res => {
+    console.log(res)
+})*/
+
+/**
+ * 移除周期性任务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.id - 任务id
+ * @returns {Promise<CtasPeriodicJobRemoveResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ctas.periodicJob.BehavioralVerificationVerify({
+    id: 9
+}).then(res => {
+    console.log(res)
+})*/
+
+/**
+ * 创建 虚拟对象服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.object_type - 对象类型
+ * @param {string} params.properties - （可选） 静态属性
+ * @returns {Promise<ObjectApiCreateResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.base.Create({
+    object_type: "string",
+    properties: {
+        "age": "string"
+    }
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 删除单个 虚拟对象服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.id - id
+ * @returns {Promise<ObjectApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.base.Delete({
+    id: 111,
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 批量删除 虚拟对象服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.ids - ids
+ * @returns {Promise<ObjectApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.base.DeleteMany({
+    ids: [100, 101, 102, 103],
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 查询单个 虚拟对象服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.id - id
+ * @returns {Promise<ModelObject & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.base.Query({
+    id: 107,
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 批量查询根据ids 虚拟对象服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.ids - ids
+ * @returns {Promise<ObjectCommonQueryListResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.base.QueryListWhereIds({
+    ids: [107, 108],
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 批量查询 虚拟对象服务
+ * @param {Object} params - 请求参数对象
+ * @param {number} params.page - （可选）
+ * @param {number} params.page_size - （可选）
+ * @param {number} params.start_created_at - （可选）
+ * @param {number} params.end_created_at - （可选）
+ * @param {string} params.keyword - （可选）
+ * @param {number} params.status - （可选）
+ * @returns {Promise<ObjectCommonQueryListResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.base.QueryList().then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 更新基础信息 虚拟对象服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.id - id
+ * @param {string} params.object_type - 对象类型
+ * @param {string} params.properties - （可选） 静态属性
+ * @returns {Promise<ObjectApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.base.Update({
+    id: 107,
+    object_type: 'string',
+    properties: {age: 'object'}
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 查询单个根据对象id 虚拟对象服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.object_id - 对象id
+ * @returns {Promise<ModelObject & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.base.QueryWhereObjectId({
+    object_id: '1958930840322854912',
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 更新状态 虚拟对象服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.id -
+ * @param {string} params.status -
+ * @returns {Promise<ObjectApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.base.UpdateStatus({
+    id: 107,
+    status: 1
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 创建 标签服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.name - 标签名称
+ * @param {string} params.sort - 排序
+ * @returns {Promise<TagApiCreateResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.tag.Create({
+    name: 'cigarette',
+    sort: 10
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 更新基础信息 标签服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.id - id
+ * @param {string} params.name - 标签名称
+ * @param {string} params.sort - 排序
+ * @returns {Promise<TagApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.tag.Update({
+    id: 13,
+    name: 'strawberry',
+    sort: 11
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 查询单个 标签服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.id - id
+ * @returns {Promise<ModelTag & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.tag.Query({
+    id: 14
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 批量查询 标签服务
+ * @param {Object} params - 请求参数对象
+ * @param {number} params.page - （可选）
+ * @param {number} params.page_size - （可选）
+ * @param {number} params.start_created_at - （可选）
+ * @param {number} params.end_created_at - （可选）
+ * @param {string} params.keyword - （可选）
+ * @param {number} params.status - （可选）
+ * @returns {Promise<TagCommonQueryListResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.tag.QueryList().then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 批量查询根据ids 标签服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.ids - ids
+ * @returns {Promise<TagCommonQueryListResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.tag.QueryListWhereIds({
+    ids: [13]
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 删除单个 标签服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.id - id
+ * @returns {Promise<TagApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.tag.Delete({
+    id: 10
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 批量删除 标签服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.ids - ids
+ * @returns {Promise<TagApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.tag.DeleteMany({
+    ids: [12, 11]
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 更新状态 标签服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.id - id
+ * @param {string} params.status - status
+ * @returns {Promise<TagApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.tag.UpdateStatus({
+    id: 14,
+    status: 1
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 创建 行业服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.name - 名称
+ * @param {string} params.qualification - 资质文件
+ * @param {string} params.qualification_link - （可选） 资质文件的相关link
+ * @param {string} params.category_scope - 包含范围
+ * @param {string} params.remark - （可选） 备注
+ * @param {number} params.parent_id - （可选） 父id
+ * @param {number} params.sort - （可选） 排序
+ * @returns {Promise<IndustryApiCreateResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.industry.Create({
+    name: '建筑企业',
+    qualification: 'cigarette',
+    category_scope: '建筑',
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 更新基础信息 行业服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.id - id
+ * @param {string} params.name - 名称
+ * @param {string} params.qualification - 资质文件
+ * @param {string} params.qualification_link - 资质文件的相关link
+ * @param {string} params.category_scope - 包含范围
+ * @param {string} params.remark - 备注
+ * @param {number} params.parent_id - 父id
+ * @param {number} params.sort - （可选） 排序
+ * @returns {Promise<IndustryApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.industry.Update({
+    id: 10,
+    parent_id: 0,
+    qualification_link: "",
+    remark: "",
+    name: '建筑企业',
+    qualification: 'strawberry',
+    category_scope: 'all建筑'
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 更新状态 行业服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.id - id
+ * @param {string} params.status - status
+ * @returns {Promise<IndustryApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.industry.UpdateStatus({
+    id: 10,
+    status: 1
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 删除单个 行业服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.id - id
+ * @returns {Promise<IndustryApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.industry.Delete({
+    id: 9
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 批量删除 行业服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.ids - ids
+ * @returns {Promise<IndustryApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.industry.DeleteMany({
+    ids: [7, 8]
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 查询单个 行业服务
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.id - id
+ * @returns {Promise<ModelIndustry & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.industry.Query({
+    id: 10
+}).then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 批量查询 行业服务
+ * @param {Object} params - 请求参数对象
+ * @param {number} params.page - （可选）
+ * @param {number} params.page_size - （可选）
+ * @param {number} params.start_created_at - （可选）
+ * @param {number} params.end_created_at - （可选）
+ * @param {string} params.keyword - （可选）
+ * @param {number} params.status - （可选）
+ * @param {number} params.parent_id - （可选）
+ * @param {string} params.only_parent - （可选）
+ * @returns {Promise<IndustryCommonQueryListResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.industry.QueryList().then(result => {
+    console.log(result)
+})*/
+
+/**
+ * 批量查询根据ids 行业服务
+ * @param {Object} params - 请求参数对象
+ * @param {number} params.ids - ids
+ * @returns {Promise<IndustryCommonQueryListResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/*sdk.ups.industry.QueryListWhereIds({
+    ids: [10]
+}).then(result => {
+    console.log(result)
 })*/

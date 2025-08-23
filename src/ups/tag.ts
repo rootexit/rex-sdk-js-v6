@@ -136,7 +136,7 @@ export class TagApi {
     }
 
     /* 批量查询 */
-    async QueryList(params: TagCommonSearchParams): Promise<BaseApiResult & TagCommonQueryListResp> {
+    async QueryList(params?: TagCommonSearchParams): Promise<BaseApiResult & TagCommonQueryListResp> {
         let url = '/ups/tag/queryList';
 
         const signed = await signRequest(this.config, this.service, {

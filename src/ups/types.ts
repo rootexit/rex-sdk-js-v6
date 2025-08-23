@@ -21,8 +21,8 @@ export type TagApiJsonIdsReq = {
 
 export type AllowUpdateModelTag = {
     id: number;
-    name?: string;
-    sort?: number;
+    name: string;
+    sort: number;
 };
 
 export type AllowUpdateStatusModelTag = {
@@ -37,7 +37,6 @@ export type TagCommonSearchParams = {
     end_created_at?: number;
     keyword?: string;
     status?: number;
-    prefix_keyword?: string;
 };
 
 export type TagCommonQueryListResp = {
@@ -86,10 +85,10 @@ export type IndustryApiJsonIdsReq = {
 
 export type AllowUpdateModelIndustry = {
     id: number;
-    name?: string;
-    qualification?: string;
+    name: string;
+    qualification: string;
     qualification_link: string;
-    category_scope?: string;
+    category_scope: string;
     remark: string;
     parent_id: number;
     sort?: number;
@@ -136,7 +135,7 @@ export type ModelIndustry = {
 
 export type AllowCreateModelShortLink = {
     original_url: string;
-    sl_type: 1 | 2 | 3;
+    sl_type?: 1 | 2 | 3;
     expire_at_unix?: number;
     creator_user_id?: string;
 };
@@ -161,7 +160,7 @@ export type ShortLinkApiJsonIdsReq = {
 export type AllowUpdateModelShortLink = {
     id: number;
     original_url: string;
-    sl_type: 1 | 2 | 3;
+    sl_type?: 1 | 2 | 3;
     expire_at_unix: number;
     creator_user_id: string;
 };
@@ -211,3 +210,66 @@ export type GetRedirectResultReq = {
 export type GetRedirectResultResp = {
     url: string;
 };
+
+export type AllowCreateModelObject = {
+    object_type: string
+    properties?: { [key: string]: string };
+}
+
+export type ObjectApiCreateResp = {
+    id: number
+    created_at_unix: number
+    updated_at_unix: number
+    object_id: string
+}
+
+export type ObjectApiFormIdReq = {
+    id: number
+}
+
+export type ObjectApiOKResp = {}
+
+export type ObjectApiJsonIdsReq = {
+    ids: Array<number>
+}
+
+export type AllowUpdateModelObject = {
+    id: number
+    object_type: string
+    properties?: { [key: string]: string };
+}
+
+export type AllowUpdateStatusModelObject = {
+    id: number
+    status: number
+}
+
+export type ObjectCommonQueryListResp = {
+    list: Array<ModelObject>;
+    total: number
+    page: number;
+    page_size: number;
+}
+
+export type ModelObject = {
+    id: number
+    created_at_unix: number
+    updated_at_unix: number
+    status: number
+    object_id: string
+    object_type: string
+    properties: { [key: string]: string };
+}
+
+export type ObjectApiQueryWhreObjectIdReq = {
+    object_id: string
+}
+
+export type ObjectCommonSearchParams = {
+    page?: number;
+    page_size?: number;
+    start_created_at?: number;
+    end_created_at?: number;
+    keyword?: string;
+    status?: number;
+}
