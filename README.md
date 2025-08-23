@@ -404,7 +404,7 @@ sdk.sas.base.CreateBucketAndConfig({
  * @param {string} params.bucket_key - （可选） 配置
  * @param {string} params.name - 存储桶的名字
  * @param {string} params.region - 存储桶的地区
- * @param {string} params.is_accelerate - 是否开启传输加速-1->否,2-是
+ * @param {number} params.is_accelerate - 是否开启传输加速-1->否,2-是
  * @param {string} params.prefix - 存储文件夹
  * @param {string} params.static_domain - 静态域名
  * @param {string} params.cdn_domain - cdn加速域名
@@ -577,7 +577,7 @@ sdk.ctas.periodicJob.BehavioralVerificationVerify({
  * 创建 虚拟对象服务
  * @param {Object} params - 请求参数对象
  * @param {string} params.object_type - 对象类型
- * @param {string} params.properties - （可选） 静态属性
+ * @param {{ [key: string]: string }} params.properties - （可选） 静态属性
  * @returns {Promise<ObjectApiCreateResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.base.Create({
@@ -657,7 +657,7 @@ sdk.ups.base.QueryList().then(result => {
  * @param {Object} params - 请求参数对象
  * @param {number} params.id - id
  * @param {string} params.object_type - 对象类型
- * @param {string} params.properties - （可选） 静态属性
+ * @param {{ [key: string]: string }} params.properties - （可选） 静态属性
  * @returns {Promise<ObjectApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.base.Update({
@@ -702,7 +702,7 @@ sdk.ups.base.UpdateStatus({
  * 创建 标签服务
  * @param {Object} params - 请求参数对象
  * @param {string} params.name - 标签名称
- * @param {string} params.sort - 排序
+ * @param {number} params.sort - 排序
  * @returns {Promise<TagApiCreateResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.tag.Create({
@@ -717,7 +717,7 @@ sdk.ups.tag.Create({
  * @param {Object} params - 请求参数对象
  * @param {number} params.id - id
  * @param {string} params.name - 标签名称
- * @param {string} params.sort - 排序
+ * @param {number} params.sort - 排序
  * @returns {Promise<TagApiOKResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.ups.tag.Update({
