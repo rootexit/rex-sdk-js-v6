@@ -163,13 +163,16 @@ const sdk = new RExSdk({
 /**
  * 创建密钥串
  * @param {Object} params - 请求参数对象
- * @param {string} params.cert_type - 算法类型-RSA-2048|RSA-3072|RSA-4096|EC-P224|EC-P256|EC-P384|EC-P521
+ * @param {string} params.key_type - RSA|EC|OKP
  * @param {string} params.name - 名称
+ * @param {string} params.alg - ES256|ES256K|ES384|ES512|EdDSA|PS256|PS384|PS512|RS256|RS384|RS512
+ * @param {string} params.rsa_bits - 必须是1024的倍数 (这个参数只有RSxxx系列或者PSxxx系列才有用 PS256|PS384|PS512|RS256|RS384|RS512)
  * @returns {Promise<KmsAkcCreateKeychainResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 /*sdk.kms.akc.KmsAkcCreateKeychain({
-    cert_type: 'RSA-3072',
+    key_type: 'RSA-3072',
     name: 'cigarette',
+    alg: 'EdDSA'
 }).then(res => {
     console.log(res)
 })*/
@@ -190,12 +193,12 @@ const sdk = new RExSdk({
  * 签名
  * @param {Object} params - 请求参数对象
  * @param {string} params.name - 名称
- * @param {string} params.sign_content - 加密内容
+ * @param {string} params.sign_content - jwk
  * @returns {Promise<KmsAkcSignResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 /*sdk.kms.akc.KmsAkcSign({
     name: 'cigarette',
-    sign_content: 'strawberry',
+    sign_content: ''
 }).then(res => {
     console.log(res)
 })*/
@@ -204,14 +207,12 @@ const sdk = new RExSdk({
  * 校验
  * @param {Object} params - 请求参数对象
  * @param {string} params.name - 名称
- * @param {string} params.sign_content - 内容
- * @param {string} params.sign - 加密内容
+ * @param {string} params.sign - jwt
  * @returns {Promise<KmsAkcVerifyResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 /*sdk.kms.akc.KmsAkcVerify({
     name: "cigarette",
-    sign_content: "strawberry",
-    sign: "eNYoN__CseChBOeKaOltT8UeJXyTPaZUsxOrpXIaL5UXKBZqQIYI_h5GyWWNk11T4YNW7IORygxWv5_Gzg-eAqnPLa_VPSpOGEtiR2mBdJmwyPBJhM0UpLrzcOKemfjDqUR1EYrjYVb3ddkOqcEeZdwoOZFLlgZNrkLUXjZZflWbJ_1Ac54xySkD-xesA4Edeo1nmG2JXCawIqfSL0ec9CpTqqFgpFGGSmrjqIJ6lcbpqPjc46_rmfKwCw-lEzwWBDUMMCPaf5awnicSYPW34MH5Vetwi7nwhe0JCG7H4T7oB3x7RD3SCeIAanLle0Q1xtQxmp1hrd7WXQiWBQTWVz57nE_Hvu2Zn2hJ6XxREF04xM7IQaulbVs4yIxUA6lwzFbv4AM6f4W6TS3S7JeIiPMDCMWE5Vp3Wbsr-4syLRP4061yOWfgWGvTYDQtV4iN62Rgtqb_RhZAsXQW6YCMRSFcpFCMSSbHos1RZ4DU8IrMc4oBjyP2uYP01qtcIIqM",
+    sign: "",
 }).then(res => {
     console.log(res)
 })*/

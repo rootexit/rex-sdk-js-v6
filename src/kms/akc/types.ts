@@ -1,24 +1,29 @@
 export type KmsAkcCreateKeychainResp = {
     data: {
-        status: string
-        name: string
-        sign_method: string
-        cert_type: string
+        id: number,
+        jwk: {
+            alg: string,
+            crv: string,
+            kid: string,
+            kty: string,
+            use: string,
+            x: string
+        },
         public_key: string
-    };
+    }
 };
 
 export type KmsAkcCreateKeychainReq = {
-    cert_type: string;
+    key_type: string; // RSA|EC|OKP
     name: string;
+    alg: string; // ES256|ES256K|ES384|ES512|EdDSA|PS256|PS384|PS512|RS256|RS384|RS512
+    rsa_bits?: number; // 必须是1024的倍数 (这个参数只有RSxxx系列或者PSxxx系列才有用 PS256|PS384|PS512|RS256|RS384|RS512)
 };
 
 export type KmsAkcGetKeychainPublicKeyResp = {
     data: {
-        name: string;
-        sign_method: string;
-        cert_type: string;
         public_key: string;
+        jwk: string;
     };
 };
 
@@ -47,6 +52,5 @@ export type KmsAkcVerifyResp = {
 
 export type KmsAkcVerifyReq = {
     name: string;
-    sign_content: string;
     sign: string;
 };
