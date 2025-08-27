@@ -177,13 +177,20 @@ sdk.mas.base.SmsSend({
 /**
  * 创建密钥串
  * @param {Object} params - 请求参数对象
- * @param {string} params.cert_type - 算法类型-RSA-2048|RSA-3072|RSA-4096|EC-P224|EC-P256|EC-P384|EC-P521
+ * @param {string} params.key_type - RSA|EC|OKP
  * @param {string} params.name - 名称
+ * @param {string} params.alg - ES256|ES256K|ES384|ES512|EdDSA|PS256|PS384|PS512|RS256|RS384|RS512
+ * @param {string} params.rsa_bits - （可选） 必须是1024的倍数 (这个参数只有RSxxx系列或者PSxxx系列才有用 PS256|PS384|PS512|RS256|RS384|RS512)
  * @returns {Promise<KmsAkcCreateKeychainResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ * RSA -> PS256|PS384|PS512|RS256|RS384|RS512
+ * EC -> ES256|ES256K|ES384|ES512
+ * OKP -> EdDSA
  */
+
 sdk.kms.akc.KmsAkcCreateKeychain({
-    cert_type: 'RSA-3072',
-    name: 'default',
+    key_type: 'OKP',
+    name: 'xxx',
+    alg: 'EdDSA',
 }).then(res => {
     console.log(res)
 })
@@ -191,11 +198,13 @@ sdk.kms.akc.KmsAkcCreateKeychain({
 /**
  * 获取公钥
  * @param {Object} params - 请求参数对象
- * @param {string} params.name - 名称
+ * @param {string} params.name - （可选）
+ * @param {string} params.kid - （可选）
  * @returns {Promise<KmsAkcGetKeychainPublicKeyResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.kms.akc.KmsAkcGetKeychainPublicKey({
-    name: 'default',
+    name: '',
+    kid: '',
 }).then(res => {
     console.log(res)
 })
@@ -203,13 +212,15 @@ sdk.kms.akc.KmsAkcGetKeychainPublicKey({
 /**
  * 签名
  * @param {Object} params - 请求参数对象
- * @param {string} params.name - 名称
- * @param {string} params.sign_content - 加密内容
+ * @param {string} params.name - （可选）
+ * @param {string} params.sign_content - jwk
+ * @param {string} params.kid - （可选）
  * @returns {Promise<KmsAkcSignResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.kms.akc.KmsAkcSign({
-    name: 'default',
-    sign_content: 'strawberry',
+    name: '',
+    kid: '',
+    sign_content: '',
 }).then(res => {
     console.log(res)
 })
@@ -217,15 +228,15 @@ sdk.kms.akc.KmsAkcSign({
 /**
  * 校验
  * @param {Object} params - 请求参数对象
- * @param {string} params.name - 名称
- * @param {string} params.sign_content - 内容
- * @param {string} params.sign - 加密内容
+ * @param {string} params.name - （可选）
+ * @param {string} params.sign - jwt
+ * @param {string} params.kid - （可选）
  * @returns {Promise<KmsAkcVerifyResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 sdk.kms.akc.KmsAkcVerify({
-    name: "default",
-    sign_content: "strawberry",
-    sign: "eNYoN__CseChBOeKaOltT8UeJXyTPaZUsxOrpXIaL5UXKBZqQIYI_h5GyWWNk11T4YNW7IORygxWv5_Gzg-eAqnPLa_VPSpOGEtiR2mBdJmwyPBJhM0UpLrzcOKemfjDqUR1EYrjYVb3ddkOqcEeZdwoOZFLlgZNrkLUXjZZflWbJ_1Ac54xySkD-xesA4Edeo1nmG2JXCawIqfSL0ec9CpTqqFgpFGGSmrjqIJ6lcbpqPjc46_rmfKwCw-lEzwWBDUMMCPaf5awnicSYPW34MH5Vetwi7nwhe0JCG7H4T7oB3x7RD3SCeIAanLle0Q1xtQxmp1hrd7WXQiWBQTWVz57nE_Hvu2Zn2hJ6XxREF04xM7IQaulbVs4yIxUA6lwzFbv4AM6f4W6TS3S7JeIiPMDCMWE5Vp3Wbsr-4syLRP4061yOWfgWGvTYDQtV4iN62Rgtqb_RhZAsXQW6YCMRSFcpFCMSSbHos1RZ4DU8IrMc4oBjyP2uYP01qtcIIqM",
+    name: "",
+    kid: "",
+    sign: "",
 }).then(res => {
     console.log(res)
 })

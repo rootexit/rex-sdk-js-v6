@@ -25,6 +25,7 @@ import {RExSdk} from '../src/index';
 const sdk = new RExSdk({
     accessKeyId: process.env.ACCESS_KEY_ID as string,
     secretAccessKey: process.env.ACCESS_KEY_SECRET as string,
+    env:'dev'
 });
 
 /**
@@ -162,6 +163,9 @@ const sdk = new RExSdk({
 
 /**
  * 创建密钥串
+ * RSA -> PS256|PS384|PS512|RS256|RS384|RS512
+ * EC -> ES256|ES256K|ES384|ES512
+ * OKP -> EdDSA
  * @param {Object} params - 请求参数对象
  * @param {string} params.key_type - RSA|EC|OKP
  * @param {string} params.name - 名称
@@ -170,9 +174,10 @@ const sdk = new RExSdk({
  * @returns {Promise<KmsAkcCreateKeychainResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 /*sdk.kms.akc.KmsAkcCreateKeychain({
-    key_type: 'RSA-3072',
-    name: 'cigarette',
-    alg: 'EdDSA'
+    key_type: 'OKP',
+    name: '',
+    alg: 'EdDSA',
+    rsa_bits: 1024,
 }).then(res => {
     console.log(res)
 })*/
@@ -180,11 +185,13 @@ const sdk = new RExSdk({
 /**
  * 获取公钥
  * @param {Object} params - 请求参数对象
- * @param {string} params.name - 名称
+ * @param {string} params.name - （可选）
+ * @param {string} params.kid - （可选）
  * @returns {Promise<KmsAkcGetKeychainPublicKeyResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 /*sdk.kms.akc.KmsAkcGetKeychainPublicKey({
-    name: 'cigarette',
+    name: '',
+    kid: '',
 }).then(res => {
     console.log(res)
 })*/
@@ -192,13 +199,15 @@ const sdk = new RExSdk({
 /**
  * 签名
  * @param {Object} params - 请求参数对象
- * @param {string} params.name - 名称
+ * @param {string} params.name - （可选）
  * @param {string} params.sign_content - jwk
+ * @param {string} params.kid - （可选）
  * @returns {Promise<KmsAkcSignResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 /*sdk.kms.akc.KmsAkcSign({
-    name: 'cigarette',
-    sign_content: ''
+    name: "xxx",
+    sign_content: "",
+    kid: "xxx",
 }).then(res => {
     console.log(res)
 })*/
@@ -206,13 +215,15 @@ const sdk = new RExSdk({
 /**
  * 校验
  * @param {Object} params - 请求参数对象
- * @param {string} params.name - 名称
+ * @param {string} params.name - （可选）
  * @param {string} params.sign - jwt
+ * @param {string} params.kid - （可选）
  * @returns {Promise<KmsAkcVerifyResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
 /*sdk.kms.akc.KmsAkcVerify({
-    name: "cigarette",
+    name: "xxx",
     sign: "",
+    kid: "xxx",
 }).then(res => {
     console.log(res)
 })*/
