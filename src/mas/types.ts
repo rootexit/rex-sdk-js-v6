@@ -84,3 +84,18 @@ export type ApiSmsSendResp = {
         requestId: string;
     };
 };
+
+export type ApiEmsSendReq = {
+    key?: string
+    recipient_email: Array<string>
+    cc?: Array<{ email: string; name: string; }>
+    subject: string
+    send_type: string
+    send_body: string
+}
+
+export type ApiEmsSendResp = {
+    data: {
+        request_id: string
+    }
+}

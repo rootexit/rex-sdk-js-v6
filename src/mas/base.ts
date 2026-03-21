@@ -1,8 +1,10 @@
-import type {SDKConfig, BaseApiResult} from '../types';
-import {signRequest} from '../signer';
+import type { SDKConfig, BaseApiResult } from '../types';
+import { signRequest } from '../signer';
 import {
     ApiCaptchaGenerateReq,
     ApiCaptchaGenerateResp,
+    ApiEmsSendReq,
+    ApiEmsSendResp,
     ApiSmsSendReq,
     ApiSmsSendResp,
     BehavioralVerificationInitReq,
@@ -126,6 +128,25 @@ export class BaseApi {
 
     async SmsSend(params: ApiSmsSendReq): Promise<BaseApiResult & ApiSmsSendResp> {
         let url = '/mas/sms/send';
+
+        const signed = await signRequest(this.config, this.service, {
+            path: url,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: params
+        });
+        const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
+            method: signed.method,
+            headers: signed.headers,
+            body: signed.body
+        });
+        return res.json();
+    }
+
+    async EmsSend(params: ApiEmsSendReq): Promise<BaseApiResult & ApiEmsSendResp> {
+        let url = '/mas/ems/send';
 
         const signed = await signRequest(this.config, this.service, {
             path: url,
