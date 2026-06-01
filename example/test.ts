@@ -1,9 +1,9 @@
 // 加载环境变量
-import { BehavioralVerificationInitResp } from '../src/mas/types';
+import { BehavioralVerificationInitResp } from '../src/mas/captcha/types'
 
-require('dotenv').config();
-import { BaseApiResult } from '../src/types';
-import { CodesResp, ZonesResp } from '../src/base/types';
+require('dotenv').config()
+import { BaseApiResult } from '../src/types'
+import { CodesResp, ZonesResp } from '../src/base/types'
 
 /**
  * CommonJS 和 ES Module 规范引入 TypeScript 类时出现类型提示差异的原因主要与模块系统的解析方式和 TypeScript 的配置有关
@@ -20,13 +20,13 @@ import { CodesResp, ZonesResp } from '../src/base/types';
  * @throws {Error} 当参数无效或网络请求失败时抛出错误
  */
 
-import { RExSdk } from '../src/index';
+import { RExSdk } from '../src/index'
 
 const sdk = new RExSdk({
-    accessKeyId: process.env.ACCESS_KEY_ID as string,
-    secretAccessKey: process.env.ACCESS_KEY_SECRET as string,
-    env: 'dev'
-});
+  accessKeyId: process.env.ACCESS_KEY_ID as string,
+  secretAccessKey: process.env.ACCESS_KEY_SECRET as string,
+  env: 'dev'
+})
 
 /**
  * 获取琼霄错误码
@@ -1065,16 +1065,17 @@ const sdk = new RExSdk({
     console.log(result)
 }) */
 
-
-sdk.credentials.credentialConfig.createCredentialConfig({
+sdk.credentials.credentialConfig
+  .createCredentialConfig({
     name: 'cigarette',
     credential_type: 'wechat',
     access_key_id: 'strawberry',
-    secret_access_key: 'chanin',
+    secret_access_key: 'chanin'
     /* remark: '',
     default_region: '',
     app_id: '',
     endpoint: '', */
-}).then(res => {
-    console.log(res);
-})
+  })
+  .then(res => {
+    console.log(res)
+  })
