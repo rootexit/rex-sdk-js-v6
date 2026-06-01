@@ -1,9 +1,9 @@
 // 加载环境变量
-import {BehavioralVerificationInitResp} from '../src/mas/types';
+import { BehavioralVerificationInitResp } from '../src/mas/types';
 
 require('dotenv').config();
-import {BaseApiResult} from '../src/types';
-import {CodesResp, ZonesResp} from '../src/base/types';
+import { BaseApiResult } from '../src/types';
+import { CodesResp, ZonesResp } from '../src/base/types';
 
 /**
  * CommonJS 和 ES Module 规范引入 TypeScript 类时出现类型提示差异的原因主要与模块系统的解析方式和 TypeScript 的配置有关
@@ -20,12 +20,12 @@ import {CodesResp, ZonesResp} from '../src/base/types';
  * @throws {Error} 当参数无效或网络请求失败时抛出错误
  */
 
-import {RExSdk} from '../src/index';
+import { RExSdk } from '../src/index';
 
 const sdk = new RExSdk({
     accessKeyId: process.env.ACCESS_KEY_ID as string,
     secretAccessKey: process.env.ACCESS_KEY_SECRET as string,
-    env:'dev'
+    env: 'dev'
 });
 
 /**
@@ -35,9 +35,9 @@ const sdk = new RExSdk({
  * @param {string} params.svc - 服务标识符
  * @returns {Promise<BaseApiResult & CodesResp>} 返回基础API结果和代码表数据的联合类型
  */
-/*sdk.base.codes({}).then((res: BaseApiResult & CodesResp) => {
+/* sdk.base.codes({}).then((res: BaseApiResult & CodesResp) => {
     console.log('codes Result:', res);
-});*/
+}); */
 
 /**
  * 获取琼霄zones
@@ -1033,3 +1033,48 @@ const sdk = new RExSdk({
 }).then(result => {
     console.log(result)
 })*/
+
+/**
+ * 邮件发送
+ * @param {Object} params - 请求参数对象
+ * @param {string} params.name - （可选） 使用的配置
+ * @param {string} params.service - （可选） 所属服务
+ * @param {string} params.scene - （可选） 使用场景
+ * @param {string} params.subject - 邮件主题
+ * @param {string} params.send_type - 邮件类型
+ * @param {string} params.send_body - 邮件内容
+ * @param {string} params.recipient_email - 收件人数组
+ * @param {Array<object>} params.cc - 抄送人数组
+ * @param {string} params.key
+ * @param {string} params.email - 抄送人的邮箱
+ * @param {string} params.name - 抄送人的名称
+ * @returns {Promise<ApiEmsSendResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
+ */
+/* sdk.mas.base.EmsSend({
+    recipient_email: ['@qq.com'],
+    cc: [
+        { email: '@qq.com', name: 'cigarette', key: 'default' }
+    ],
+    subject: '测试',
+    send_type: 'text/plain',
+    send_body: '测试邮件内容',
+    name: '',
+    service: '',
+    scene: ''
+}).then(result => {
+    console.log(result)
+}) */
+
+
+sdk.credentials.credentialConfig.createCredentialConfig({
+    name: 'cigarette',
+    credential_type: 'wechat',
+    access_key_id: 'strawberry',
+    secret_access_key: 'chanin',
+    /* remark: '',
+    default_region: '',
+    app_id: '',
+    endpoint: '', */
+}).then(res => {
+    console.log(res);
+})

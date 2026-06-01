@@ -86,12 +86,14 @@ export type ApiSmsSendResp = {
 };
 
 export type ApiEmsSendReq = {
-    key?: string
     recipient_email: Array<string>
-    cc?: Array<{ email: string; name: string; }>
+    cc: Array<{ email: string; name: string; key: string }>
     subject: string
-    send_type: string
+    send_type: "text/plain" | "text/html"
     send_body: string
+    name?: string
+    service?: string
+    scene?: string
 }
 
 export type ApiEmsSendResp = {
