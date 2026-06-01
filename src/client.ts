@@ -7,6 +7,7 @@ import { MASApi } from './mas';
 import { SASApi } from './sas';
 import { TPASApi } from './tpas';
 import { CTASApi } from './ctas';
+import { CredentialsApi } from './credentials'
 
 export class RExSdk {
   private config: SDKConfig;
@@ -17,6 +18,7 @@ export class RExSdk {
   public sas: SASApi;
   public tpas: TPASApi;
   public ctas: CTASApi;
+  public credentials: CredentialsApi;
 
   constructor(config: SDKConfig) {
     if (config.env == undefined || config.env == null || config.env == '' || config.env.length <= 0) {
@@ -48,6 +50,7 @@ export class RExSdk {
     this.sas = new SASApi(this.config);
     this.tpas = new TPASApi(this.config);
     this.ctas = new CTASApi(this.config);
+    this.credentials = new CredentialsApi(this.config)
   }
 
   async request(service: string, params: SDKRequestParams): Promise<any> {
