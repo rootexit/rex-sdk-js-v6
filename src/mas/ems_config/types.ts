@@ -1,21 +1,21 @@
-interface CreateEmsConfigReq {}
-interface CreateEmsConfigResp {}
-interface DeleteEmsConfigReq {}
-interface DeleteEmsConfigResp {}
-interface DeleteManyEmsConfigReq {}
-interface DeleteManyEmsConfigResp {}
-interface UpdateEmsConfigReq {}
-interface UpdateEmsConfigResp {}
-interface UpdateDefaultEmsConfigReq {}
-interface UpdateDefaultEmsConfigResp {}
-interface UpdateStatusEmsConfigReq {}
-interface UpdateStatusEmsConfigResp {}
-interface QueryListEmsConfigReq {}
-interface QueryListEmsConfigResp {}
-interface QueryListWhereIdsEmsConfigReq {}
-interface QueryListWhereIdsEmsConfigResp {}
-interface QueryEmsConfigReq {}
-interface QueryEmsConfigResp {}
+type CreateEmsConfigReq = {}
+type CreateEmsConfigResp = {}
+type DeleteEmsConfigReq = {}
+type DeleteEmsConfigResp = {}
+type DeleteManyEmsConfigReq = {}
+type DeleteManyEmsConfigResp = {}
+type UpdateEmsConfigReq = {}
+type UpdateEmsConfigResp = {}
+type UpdateDefaultEmsConfigReq = {}
+type UpdateDefaultEmsConfigResp = {}
+type UpdateStatusEmsConfigReq = {}
+type UpdateStatusEmsConfigResp = {}
+type QueryListEmsConfigReq = {}
+type QueryListEmsConfigResp = {}
+type QueryListWhereIdsEmsConfigReq = {}
+type QueryListWhereIdsEmsConfigResp = {}
+type QueryEmsConfigReq = {}
+type QueryEmsConfigResp = {}
 
 export {
   CreateEmsConfigReq,

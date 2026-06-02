@@ -1,65 +1,65 @@
-import { signRequest } from './signer';
-import type { SDKConfig, SDKRequestParams } from './types';
-import { BaseApi } from './base/base';
-import { KMSApi } from './kms';
-import { UPSApi } from './ups';
-import { MASApi } from './mas';
-import { SASApi } from './sas';
-import { TPASApi } from './tpas';
-import { CTASApi } from './ctas';
+import { signRequest } from './signer'
+import type { SDKConfig, SDKRequestParams } from './types'
+import { BaseApi } from './base/base'
+import { KMSApi } from './kms'
+import { UPSApi } from './ups'
+import { MASApi } from './mas'
+import { SASApi } from './sas'
+import { TPASApi } from './tpas'
+import { CTASApi } from './ctas'
 import { CredentialsApi } from './credentials'
 
 export class RExSdk {
-  private config: SDKConfig;
-  public base: BaseApi;
-  public kms: KMSApi;
-  public ups: UPSApi;
-  public mas: MASApi;
-  public sas: SASApi;
-  public tpas: TPASApi;
-  public ctas: CTASApi;
-  public credentials: CredentialsApi;
+  private config: SDKConfig
+  public base: BaseApi
+  public kms: KMSApi
+  public ups: UPSApi
+  public mas: MASApi
+  public sas: SASApi
+  public tpas: TPASApi
+  public ctas: CTASApi
+  public credentials: CredentialsApi
 
   constructor(config: SDKConfig) {
     if (config.env == undefined || config.env == null || config.env == '' || config.env.length <= 0) {
-      config.env = 'prod'; // Default environment
+      config.env = 'prod' // Default environment
     }
     if (config.region == undefined || config.region == null || config.region == '' || config.region.length <= 0) {
-      config.region = 'cn-shanghai'; // Default region
+      config.region = 'cn-shanghai' // Default region
     }
     if (config.version == undefined || config.version == null || config.version == '' || config.version.length <= 0) {
-      config.version = 'v5'; // Default region
+      config.version = 'v6' // Default region
     }
     if (config.protocol == undefined || config.protocol == null || config.protocol == '' || config.protocol.length <= 0) {
-      config.protocol = 'https'; // Default region
+      config.protocol = 'https' // Default region
     }
     if (config.host == undefined || config.host == null || config.host == '' || config.host.length <= 0) {
       if (config.env == 'dev') {
-        config.host = 'dev-api.rootexit.com'; // Default host for dev environment
+        config.host = 'dev-api.rootexit.com' // Default host for dev environment
       } else if (config.env == 'pre-prod') {
-        config.host = 'pre-prod-api.rootexit.com'; // Default host for pre-prod environment
+        config.host = 'pre-prod-api.rootexit.com' // Default host for pre-prod environment
       } else {
-        config.host = 'api.rootexit.com'; // Default host for prod environment
+        config.host = 'api.rootexit.com' // Default host for prod environment
       }
     }
-    this.config = config;
-    this.base = new BaseApi(this.config);
-    this.kms = new KMSApi(this.config);
-    this.ups = new UPSApi(this.config);
-    this.mas = new MASApi(this.config);
-    this.sas = new SASApi(this.config);
-    this.tpas = new TPASApi(this.config);
-    this.ctas = new CTASApi(this.config);
+    this.config = config
+    this.base = new BaseApi(this.config)
+    this.kms = new KMSApi(this.config)
+    this.ups = new UPSApi(this.config)
+    this.mas = new MASApi(this.config)
+    this.sas = new SASApi(this.config)
+    this.tpas = new TPASApi(this.config)
+    this.ctas = new CTASApi(this.config)
     this.credentials = new CredentialsApi(this.config)
   }
 
   async request(service: string, params: SDKRequestParams): Promise<any> {
-    const signed = await signRequest(this.config, service, params);
+    const signed = await signRequest(this.config, service, params)
     const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
       method: signed.method,
       headers: signed.headers,
       body: signed.body
-    });
-    return res.json();
+    })
+    return res.json()
   }
 }

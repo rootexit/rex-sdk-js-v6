@@ -1,6 +1,7 @@
 import type { SDKConfig } from '../../types'
-import { BaseApiResult } from '../../types'
+import { BaseApiResult, List } from '../../types'
 import { signRequest } from '../../signer'
+import { Conversion, Merge } from '../../utils/common'
 import {
   CreateCredentialConfigReq,
   CreateCredentialConfigResp,
@@ -50,21 +51,22 @@ export class CredentialConfigApi {
     return res.json()
   }
 
-  async deleteCredentialConfig(params?: DeleteCredentialConfigReq): Promise<BaseApiResult & DeleteCredentialConfigResp> {
-    let url = '/credentials/credentialConfig/delete'
+  async deleteCredentialConfig(params: DeleteCredentialConfigReq): Promise<BaseApiResult & DeleteCredentialConfigResp> {
+    let url = `/credentials/credentialConfig/delete`
+
+    const result = Conversion(params)
+
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: params
+      query: result
     })
 
-    const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
+    const reqUrl = Merge(signed, result)
+
+    const res = await fetch(reqUrl, {
       method: signed.method,
-      headers: signed.headers,
-      body: signed.body
+      headers: signed.headers
     })
     return res.json()
   }
@@ -145,7 +147,7 @@ export class CredentialConfigApi {
     return res.json()
   }
 
-  async queryListCredentialConfig(params?: QueryListCredentialConfigReq): Promise<BaseApiResult & QueryListCredentialConfigResp> {
+  async queryListCredentialConfig(params?: QueryListCredentialConfigReq): Promise<BaseApiResult<List<QueryListCredentialConfigResp>>> {
     let url = '/credentials/credentialConfig/queryList'
     const signed = await signRequest(this.config, this.service, {
       path: url,
@@ -183,29 +185,22 @@ export class CredentialConfigApi {
     return res.json()
   }
 
-  async queryCredentialConfig(params?: QueryCredentialConfigReq): Promise<BaseApiResult & QueryCredentialConfigResp> {
+  async queryCredentialConfig(params: QueryCredentialConfigReq): Promise<BaseApiResult & QueryCredentialConfigResp> {
     let url = '/credentials/credentialConfig/query'
+
+    const result = Conversion(params)
+
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'GET',
-      headers: {},
-      query: params
+      query: result
     })
 
-    const reqUrl = new URL(`${signed.protocol}/${signed.hostname}${signed.path}`)
-    Object.entries(signed.query).forEach(([k, v]) => {
-      if (v === null || v === undefined) return
-      if (Array.isArray(v)) {
-        v.forEach(item => reqUrl.searchParams.append(k, item))
-      } else {
-        reqUrl.searchParams.append(k, v)
-      }
-    })
+    const reqUrl = Merge(signed, result)
 
     const res = await fetch(reqUrl, {
       method: signed.method,
-      headers: signed.headers,
-      body: signed.body
+      headers: signed.headers
     })
     return res.json()
   }

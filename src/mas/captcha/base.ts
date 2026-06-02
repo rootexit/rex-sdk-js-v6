@@ -1,5 +1,5 @@
-import type { SDKConfig, BaseApiResult } from './types'
-import { signRequest } from '../signer'
+import type { SDKConfig, BaseApiResult } from '../../types'
+import { signRequest } from '../../signer'
 import {
   ApiCaptchaGenerateReq,
   ApiCaptchaGenerateResp,

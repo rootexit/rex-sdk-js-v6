@@ -1,21 +1,21 @@
-interface CreateBucketConfigReq {}
-interface CreateBucketConfigResp {}
-interface DeleteBucketConfigReq {}
-interface DeleteBucketConfigResp {}
-interface DeleteManyBucketConfigReq {}
-interface DeleteManyBucketConfigResp {}
-interface UpdateBucketConfigReq {}
-interface UpdateBucketConfigResp {}
-interface UpdateDefaultBucketConfigReq {}
-interface UpdateDefaultBucketConfigResp {}
-interface UpdateStatusBucketConfigReq {}
-interface UpdateStatusBucketConfigResp {}
-interface QueryListBucketConfigReq {}
-interface QueryListBucketConfigResp {}
-interface QueryListWhereIdsBucketConfigReq {}
-interface QueryListWhereIdsBucketConfigResp {}
-interface QueryBucketConfigReq {}
-interface QueryBucketConfigResp {}
+type CreateBucketConfigReq = {}
+type CreateBucketConfigResp = {}
+type DeleteBucketConfigReq = {}
+type DeleteBucketConfigResp = {}
+type DeleteManyBucketConfigReq = {}
+type DeleteManyBucketConfigResp = {}
+type UpdateBucketConfigReq = {}
+type UpdateBucketConfigResp = {}
+type UpdateDefaultBucketConfigReq = {}
+type UpdateDefaultBucketConfigResp = {}
+type UpdateStatusBucketConfigReq = {}
+type UpdateStatusBucketConfigResp = {}
+type QueryListBucketConfigReq = {}
+type QueryListBucketConfigResp = {}
+type QueryListWhereIdsBucketConfigReq = {}
+type QueryListWhereIdsBucketConfigResp = {}
+type QueryBucketConfigReq = {}
+type QueryBucketConfigResp = {}
 
 export {
   CreateBucketConfigReq,

@@ -1,21 +1,21 @@
-interface CreateCaptchaConfigReq {}
-interface CreateCaptchaConfigResp {}
-interface DeleteCaptchaConfigReq {}
-interface DeleteCaptchaConfigResp {}
-interface DeleteManyCaptchaConfigReq {}
-interface DeleteManyCaptchaConfigResp {}
-interface UpdateCaptchaConfigReq {}
-interface UpdateCaptchaConfigResp {}
-interface UpdateDefaultCaptchaConfigReq {}
-interface UpdateDefaultCaptchaConfigResp {}
-interface UpdateStatusCaptchaConfigReq {}
-interface UpdateStatusCaptchaConfigResp {}
-interface QueryListCaptchaConfigReq {}
-interface QueryListCaptchaConfigResp {}
-interface QueryListWhereIdsCaptchaConfigReq {}
-interface QueryListWhereIdsCaptchaConfigResp {}
-interface QueryCaptchaConfigReq {}
-interface QueryCaptchaConfigResp {}
+type CreateCaptchaConfigReq = {}
+type CreateCaptchaConfigResp = {}
+type DeleteCaptchaConfigReq = {}
+type DeleteCaptchaConfigResp = {}
+type DeleteManyCaptchaConfigReq = {}
+type DeleteManyCaptchaConfigResp = {}
+type UpdateCaptchaConfigReq = {}
+type UpdateCaptchaConfigResp = {}
+type UpdateDefaultCaptchaConfigReq = {}
+type UpdateDefaultCaptchaConfigResp = {}
+type UpdateStatusCaptchaConfigReq = {}
+type UpdateStatusCaptchaConfigResp = {}
+type QueryListCaptchaConfigReq = {}
+type QueryListCaptchaConfigResp = {}
+type QueryListWhereIdsCaptchaConfigReq = {}
+type QueryListWhereIdsCaptchaConfigResp = {}
+type QueryCaptchaConfigReq = {}
+type QueryCaptchaConfigResp = {}
 
 export {
   CreateCaptchaConfigReq,

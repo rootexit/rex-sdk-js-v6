@@ -1050,32 +1050,89 @@ const sdk = new RExSdk({
  * @param {string} params.name - 抄送人的名称
  * @returns {Promise<ApiEmsSendResp & BaseApiResult>} 返回基础API结果和代码表数据的联合类型
  */
-/* sdk.mas.base.EmsSend({
+/* sdk.mas.base
+  .EmsSend({
     recipient_email: ['@qq.com'],
-    cc: [
-        { email: '@qq.com', name: 'cigarette', key: 'default' }
-    ],
+    cc: [{ email: '@qq.com', name: 'cigarette', key: 'default' }],
     subject: '测试',
     send_type: 'text/plain',
     send_body: '测试邮件内容',
     name: '',
     service: '',
     scene: ''
-}).then(result => {
+  })
+  .then(result => {
     console.log(result)
-}) */
+  }) */
 
-sdk.credentials.credentialConfig
+/* sdk.credentials.credentialConfig
   .createCredentialConfig({
     name: 'cigarette',
-    credential_type: 'wechat',
-    access_key_id: 'strawberry',
-    secret_access_key: 'chanin'
-    /* remark: '',
-    default_region: '',
-    app_id: '',
-    endpoint: '', */
+    credential_type: 'strawberry',
+    access_key_id: 'key',
+    secret_access_key: '123456',
+    remark: '测试',
+    default_region: '短信',
+    endpoint: '测试',
+    app_id: '1'
   })
   .then(res => {
     console.log(res)
+  }) */
+
+/* sdk.credentials.credentialConfig.deleteCredentialConfig({ id: 10 }).then(res => {
+  console.log(res)
+}) */
+
+/* sdk.credentials.credentialConfig.deleteManyCredentialConfig({ ids: [10] }).then(res => {
+  console.log(res)
+}) */
+
+/* sdk.credentials.credentialConfig
+  .updateCredentialConfig({
+    id: 12,
+    name: 'cigarette1',
+    credential_type: 'strawberry1',
+    access_key_id: 'key',
+    secret_access_key: 'JujYoTWHfPzyA9s2oCdSyGoJ4enSAg==',
+    remark: '测试',
+    default_region: '邮件',
+    app_id: '12',
+    endpoint: '测试1'
   })
+  .then(res => {
+    console.log(res)
+  }) */
+
+/* sdk.credentials.credentialConfig
+  .updateDefaultCredentialConfig({
+    id: 20
+  })
+  .then(res => {
+    console.log(res)
+  }) */
+
+/* sdk.credentials.credentialConfig
+  .updateStatusCredentialConfig({
+    id: 12,
+    status: 1
+  })
+  .then(res => {
+    console.log(res)
+  }) */
+
+/* sdk.credentials.credentialConfig.queryListCredentialConfig().then(res => {
+  console.log(res)
+}) */
+
+/* sdk.credentials.credentialConfig
+  .queryListWhereIdsCredentialConfig({
+    ids: [12]
+  })
+  .then(res => {
+    console.log(res)
+  }) */
+
+/* sdk.credentials.credentialConfig.queryCredentialConfig({ id: 12 }).then(res => {
+  console.log(res)
+}) */

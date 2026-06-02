@@ -1,21 +1,21 @@
-interface CreateSmsConfigReq {}
-interface CreateSmsConfigResp {}
-interface DeleteSmsConfigReq {}
-interface DeleteSmsConfigResp {}
-interface DeleteManySmsConfigReq {}
-interface DeleteManySmsConfigResp {}
-interface UpdateSmsConfigReq {}
-interface UpdateSmsConfigResp {}
-interface UpdateDefaultSmsConfigReq {}
-interface UpdateDefaultSmsConfigResp {}
-interface UpdateStatusSmsConfigReq {}
-interface UpdateStatusSmsConfigResp {}
-interface QueryListSmsConfigReq {}
-interface QueryListSmsConfigResp {}
-interface QueryListWhereIdsSmsConfigReq {}
-interface QueryListWhereIdsSmsConfigResp {}
-interface QuerySmsConfigReq {}
-interface QuerySmsConfigResp {}
+type CreateSmsConfigReq = {}
+type CreateSmsConfigResp = {}
+type DeleteSmsConfigReq = {}
+type DeleteSmsConfigResp = {}
+type DeleteManySmsConfigReq = {}
+type DeleteManySmsConfigResp = {}
+type UpdateSmsConfigReq = {}
+type UpdateSmsConfigResp = {}
+type UpdateDefaultSmsConfigReq = {}
+type UpdateDefaultSmsConfigResp = {}
+type UpdateStatusSmsConfigReq = {}
+type UpdateStatusSmsConfigResp = {}
+type QueryListSmsConfigReq = {}
+type QueryListSmsConfigResp = {}
+type QueryListWhereIdsSmsConfigReq = {}
+type QueryListWhereIdsSmsConfigResp = {}
+type QuerySmsConfigReq = {}
+type QuerySmsConfigResp = {}
 
 export {
   CreateSmsConfigReq,
