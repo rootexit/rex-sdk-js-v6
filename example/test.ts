@@ -1244,3 +1244,61 @@ const sdk = new RExSdk({
 /* sdk.mas.smsConfig.queryListWhereIdsSmsConfig({ ids: [1] }).then(res => {
   console.log('🚀 ~ res:', res)
 }) */
+
+/* sdk.mas.emsConfig
+  .createEmsConfig({
+    name: 'cigarette',
+    credential_id: 10,
+    sender_name: 'cigarette',
+    endpoint: 'EMS_123456',
+    port: 80,
+    protocol: 'http',
+    remark: 'cigarette'
+  })
+  .then(res => {
+    console.log('🚀 ~ res:', res)
+  }) */
+/* sdk.mas.emsConfig
+  .updateEmsConfig({
+    id: 3,
+    name: 'strawberry',
+    credential_id: 10,
+    sender_name: 'strawberry',
+    endpoint: 'EMS_123456',
+    port: 80,
+    protocol: 'http',
+    remark: 'strawberry'
+  })
+  .then(res => {
+    console.log('🚀 ~ res:', res)
+  }) */
+/* sdk.mas.emsConfig
+  .updateDefaultEmsConfig({
+    id: 1
+  })
+  .then(res => {
+    console.log('🚀 ~ res:', res)
+  }) */
+/* sdk.mas.emsConfig
+  .updateStatusEmsConfig({
+    id: 1,
+    status: 2
+  })
+  .then(res => {
+    console.log('🚀 ~ res:', res)
+  }) */
+/* sdk.mas.emsConfig.deleteEmsConfig({ id: 3 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.mas.emsConfig.deleteManyEmsConfig({ ids: [4] }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.mas.emsConfig.queryListEmsConfig({}).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.mas.emsConfig.queryListWhereIdsEmsConfig({ ids: [1, 2] }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.mas.emsConfig.queryEmsConfig({ id: 3 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */

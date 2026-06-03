@@ -1,4 +1,4 @@
-import type { SDKConfig } from '../../types'
+import type { List, SDKConfig } from '../../types'
 import { BaseApiResult } from '../../types'
 import { signRequest } from '../../signer'
 import {
@@ -21,6 +21,7 @@ import {
   QueryEmsConfigReq,
   QueryEmsConfigResp
 } from './types'
+import { Conversion, Merge } from '../../utils/common'
 
 export class EmsConfigApi {
   private config: SDKConfig
@@ -50,21 +51,21 @@ export class EmsConfigApi {
     return res.json()
   }
 
-  async deleteEmsConfig(params?: DeleteEmsConfigReq): Promise<BaseApiResult & DeleteEmsConfigResp> {
+  async deleteEmsConfig(params: DeleteEmsConfigReq): Promise<BaseApiResult & DeleteEmsConfigResp> {
     let url = '/mas/emsConfig/delete'
+    const result = Conversion(params)
+
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: params
+      query: result
     })
 
-    const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
+    const reqUrl = Merge(signed, result)
+
+    const res = await fetch(reqUrl, {
       method: signed.method,
-      headers: signed.headers,
-      body: signed.body
+      headers: signed.headers
     })
     return res.json()
   }
@@ -145,7 +146,7 @@ export class EmsConfigApi {
     return res.json()
   }
 
-  async queryListEmsConfig(params?: QueryListEmsConfigReq): Promise<BaseApiResult & QueryListEmsConfigResp> {
+  async queryListEmsConfig(params?: QueryListEmsConfigReq): Promise<BaseApiResult<List<QueryListEmsConfigResp>>> {
     let url = '/mas/emsConfig/queryList'
     const signed = await signRequest(this.config, this.service, {
       path: url,
@@ -164,7 +165,7 @@ export class EmsConfigApi {
     return res.json()
   }
 
-  async queryListWhereIdsEmsConfig(params?: QueryListWhereIdsEmsConfigReq): Promise<BaseApiResult & QueryListWhereIdsEmsConfigResp> {
+  async queryListWhereIdsEmsConfig(params?: QueryListWhereIdsEmsConfigReq): Promise<BaseApiResult<List<QueryListWhereIdsEmsConfigResp>>> {
     let url = '/mas/emsConfig/queryListWhereIds'
     const signed = await signRequest(this.config, this.service, {
       path: url,
@@ -183,29 +184,21 @@ export class EmsConfigApi {
     return res.json()
   }
 
-  async queryEmsConfig(params?: QueryEmsConfigReq): Promise<BaseApiResult & QueryEmsConfigResp> {
+  async queryEmsConfig(params: QueryEmsConfigReq): Promise<BaseApiResult<QueryEmsConfigResp>> {
     let url = '/mas/emsConfig/query'
+    const result = Conversion(params)
+
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'GET',
-      headers: {},
-      query: params
+      query: result
     })
 
-    const reqUrl = new URL(`${signed.protocol}/${signed.hostname}${signed.path}`)
-    Object.entries(signed.query).forEach(([k, v]) => {
-      if (v === null || v === undefined) return
-      if (Array.isArray(v)) {
-        v.forEach(item => reqUrl.searchParams.append(k, item))
-      } else {
-        reqUrl.searchParams.append(k, v)
-      }
-    })
+    const reqUrl = Merge(signed, result)
 
     const res = await fetch(reqUrl, {
       method: signed.method,
-      headers: signed.headers,
-      body: signed.body
+      headers: signed.headers
     })
     return res.json()
   }
