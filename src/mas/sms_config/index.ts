@@ -1,6 +1,8 @@
-import type { SDKConfig } from '../../types'
+import type { List, SDKConfig } from '../../types'
 import { BaseApiResult } from '../../types'
 import { signRequest } from '../../signer'
+import { Conversion, Merge } from '../../utils/common'
+
 import {
   CreateSmsConfigReq,
   CreateSmsConfigResp,
@@ -50,21 +52,21 @@ export class SmsConfigApi {
     return res.json()
   }
 
-  async deleteSmsConfig(params?: DeleteSmsConfigReq): Promise<BaseApiResult & DeleteSmsConfigResp> {
+  async deleteSmsConfig(params: DeleteSmsConfigReq): Promise<BaseApiResult & DeleteSmsConfigResp> {
     let url = '/mas/smsConfig/delete'
+    const result = Conversion(params)
+
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: params
+      query: result
     })
 
-    const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
+    const reqUrl = Merge(signed, result)
+
+    const res = await fetch(reqUrl, {
       method: signed.method,
-      headers: signed.headers,
-      body: signed.body
+      headers: signed.headers
     })
     return res.json()
   }
@@ -145,7 +147,7 @@ export class SmsConfigApi {
     return res.json()
   }
 
-  async queryListSmsConfig(params?: QueryListSmsConfigReq): Promise<BaseApiResult & QueryListSmsConfigResp> {
+  async queryListSmsConfig(params?: QueryListSmsConfigReq): Promise<BaseApiResult<List<QueryListSmsConfigResp>>> {
     let url = '/mas/smsConfig/queryList'
     const signed = await signRequest(this.config, this.service, {
       path: url,
@@ -164,7 +166,7 @@ export class SmsConfigApi {
     return res.json()
   }
 
-  async queryListWhereIdsSmsConfig(params?: QueryListWhereIdsSmsConfigReq): Promise<BaseApiResult & QueryListWhereIdsSmsConfigResp> {
+  async queryListWhereIdsSmsConfig(params?: QueryListWhereIdsSmsConfigReq): Promise<BaseApiResult<List<QueryListWhereIdsSmsConfigResp>>> {
     let url = '/mas/smsConfig/queryListWhereIds'
     const signed = await signRequest(this.config, this.service, {
       path: url,
@@ -183,29 +185,21 @@ export class SmsConfigApi {
     return res.json()
   }
 
-  async querySmsConfig(params?: QuerySmsConfigReq): Promise<BaseApiResult & QuerySmsConfigResp> {
+  async querySmsConfig(params: QuerySmsConfigReq): Promise<BaseApiResult<QuerySmsConfigResp>> {
     let url = '/mas/smsConfig/query'
+    const result = Conversion(params)
+
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'GET',
-      headers: {},
-      query: params
+      query: result
     })
 
-    const reqUrl = new URL(`${signed.protocol}/${signed.hostname}${signed.path}`)
-    Object.entries(signed.query).forEach(([k, v]) => {
-      if (v === null || v === undefined) return
-      if (Array.isArray(v)) {
-        v.forEach(item => reqUrl.searchParams.append(k, item))
-      } else {
-        reqUrl.searchParams.append(k, v)
-      }
-    })
+    const reqUrl = Merge(signed, result)
 
     const res = await fetch(reqUrl, {
       method: signed.method,
-      headers: signed.headers,
-      body: signed.body
+      headers: signed.headers
     })
     return res.json()
   }

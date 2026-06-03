@@ -1195,3 +1195,52 @@ const sdk = new RExSdk({
 /* sdk.mas.captchaConfig.queryCaptchaConfig({ id: 6 }).then(res => {
   console.log('🚀 ~ res:', res)
 }) */
+
+/* sdk.mas.smsConfig
+  .createSmsConfig({
+    name: 'cigarette',
+    credential_id: 2,
+    endpoint: 'cigwu.com',
+    template: 'SMS_123456',
+    sign_name: 'nuxt-cas',
+    params_str: '{\"code\":\"%s\"}',
+    remark: 'cigarette'
+  })
+  .then(res => {
+    console.log('🚀 ~ res:', res)
+  }) */
+/* sdk.mas.smsConfig
+  .updateSmsConfig({
+    id: 2,
+    name: 'strawberry',
+    credential_id: 2,
+    endpoint: 'cigwu.com',
+    template: 'SMS_123456',
+    sign_name: 'nuxt-cas',
+    params_str: '{"code":"%s"}',
+    remark: 'strawberry'
+  })
+  .then(res => {
+    console.log('🚀 ~ res:', res)
+  }) */
+/* sdk.mas.smsConfig.updateDefaultSmsConfig({ id: 1 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.mas.smsConfig.updateStatusSmsConfig({ id: 1, status: 2 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.mas.smsConfig.deleteSmsConfig({ id: 2 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.mas.smsConfig.deleteManySmsConfig({ ids: [2] }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.mas.smsConfig.querySmsConfig({ id: 1 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.mas.smsConfig.queryListSmsConfig().then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.mas.smsConfig.queryListWhereIdsSmsConfig({ ids: [1] }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
