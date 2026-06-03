@@ -1136,3 +1136,62 @@ const sdk = new RExSdk({
 /* sdk.credentials.credentialConfig.queryCredentialConfig({ id: 12 }).then(res => {
   console.log(res)
 }) */
+
+/* sdk.mas.captchaConfig.queryListCaptchaConfig().then(res => {
+  console.log('🚀 ~ res:', res)
+  res.data.list.forEach(item => {
+    console.log('🚀 ~ item:', item)
+  })
+}) */
+
+/* sdk.mas.captchaConfig.queryListWhereIdsCaptchaConfig({ ids: [1, 2, 4] }).then(res => {
+  console.log('🚀 ~ res:', res)
+})
+ */
+
+/* sdk.mas.captchaConfig
+  .createCaptchaConfig({
+    name: 'cigarette',
+    dot_count: 10,
+    img_width: 180,
+    img_height: 30,
+    key_long: 6,
+    max_skew: 45
+  })
+  .then(res => {
+    console.log('🚀 ~ res:', res)
+  }) */
+
+/* sdk.mas.captchaConfig
+  .updateCaptchaConfig({
+    id: 5,
+    name: 'strawberry',
+    dot_count: 20,
+    img_width: 120,
+    img_height: 30,
+    key_long: 6,
+    max_skew: 50
+  })
+  .then(res => {
+    console.log('🚀 ~ res:', res)
+  }) */
+
+/* sdk.mas.captchaConfig.updateDefaultCaptchaConfig({ id: 1 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+
+/* sdk.mas.captchaConfig.updateStatusCaptchaConfig({ id: 5, status: 2 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+
+/* sdk.mas.captchaConfig.deleteCaptchaConfig({ id: 6 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+
+/* sdk.mas.captchaConfig.deleteManyCaptchaConfig({ ids: [7] }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+
+/* sdk.mas.captchaConfig.queryCaptchaConfig({ id: 6 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */

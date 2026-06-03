@@ -166,7 +166,7 @@ export class CredentialConfigApi {
     return res.json()
   }
 
-  async queryListWhereIdsCredentialConfig(params?: QueryListWhereIdsCredentialConfigReq): Promise<BaseApiResult & QueryListWhereIdsCredentialConfigResp> {
+  async queryListWhereIdsCredentialConfig(params?: QueryListWhereIdsCredentialConfigReq): Promise<BaseApiResult<List<QueryListWhereIdsCredentialConfigResp>>> {
     let url = '/credentials/credentialConfig/queryListWhereIds'
     const signed = await signRequest(this.config, this.service, {
       path: url,
@@ -185,7 +185,7 @@ export class CredentialConfigApi {
     return res.json()
   }
 
-  async queryCredentialConfig(params: QueryCredentialConfigReq): Promise<BaseApiResult & QueryCredentialConfigResp> {
+  async queryCredentialConfig(params: QueryCredentialConfigReq): Promise<BaseApiResult<QueryCredentialConfigResp>> {
     let url = '/credentials/credentialConfig/query'
 
     const result = Conversion(params)

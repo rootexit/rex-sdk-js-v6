@@ -140,21 +140,19 @@ type QueryCredentialConfigReq = {
   id: number
 }
 type QueryCredentialConfigResp = {
-  data: {
-    id: number
-    created_at_unix: number
-    updated_at_unix: number
-    is_default: boolean
-    status: number
-    name: string
-    credential_type: string
-    access_key_id: string
-    secret_access_key: string
-    remark: string
-    default_region: string
-    app_id: string
-    endpoint: string
-  }
+  id: number
+  created_at_unix: number
+  updated_at_unix: number
+  is_default: boolean
+  status: number
+  name: string
+  credential_type: string
+  access_key_id: string
+  secret_access_key: string
+  remark: string
+  default_region: string
+  app_id: string
+  endpoint: string
 }
 
 export {

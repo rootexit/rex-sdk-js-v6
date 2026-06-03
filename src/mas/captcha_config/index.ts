@@ -1,6 +1,7 @@
 import type { SDKConfig } from '../../types'
-import { BaseApiResult } from '../../types'
+import { BaseApiResult, List } from '../../types'
 import { signRequest } from '../../signer'
+import { Conversion, Merge } from '../../utils/common'
 import {
   CreateCaptchaConfigReq,
   CreateCaptchaConfigResp,
@@ -50,21 +51,22 @@ export class CaptchaConfigApi {
     return res.json()
   }
 
-  async deleteCaptchaConfig(params?: DeleteCaptchaConfigReq): Promise<BaseApiResult & DeleteCaptchaConfigResp> {
+  async deleteCaptchaConfig(params: DeleteCaptchaConfigReq): Promise<BaseApiResult & DeleteCaptchaConfigResp> {
     let url = '/mas/captchaConfig/delete'
+
+    const result = Conversion(params)
+
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: params
+      query: result
     })
 
-    const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
+    const reqUrl = Merge(signed, result)
+
+    const res = await fetch(reqUrl, {
       method: signed.method,
-      headers: signed.headers,
-      body: signed.body
+      headers: signed.headers
     })
     return res.json()
   }
@@ -145,7 +147,7 @@ export class CaptchaConfigApi {
     return res.json()
   }
 
-  async queryListCaptchaConfig(params?: QueryListCaptchaConfigReq): Promise<BaseApiResult & QueryListCaptchaConfigResp> {
+  async queryListCaptchaConfig(params?: QueryListCaptchaConfigReq): Promise<BaseApiResult<List<QueryListCaptchaConfigResp>>> {
     let url = '/mas/captchaConfig/queryList'
     const signed = await signRequest(this.config, this.service, {
       path: url,
@@ -164,7 +166,7 @@ export class CaptchaConfigApi {
     return res.json()
   }
 
-  async queryListWhereIdsCaptchaConfig(params?: QueryListWhereIdsCaptchaConfigReq): Promise<BaseApiResult & QueryListWhereIdsCaptchaConfigResp> {
+  async queryListWhereIdsCaptchaConfig(params?: QueryListWhereIdsCaptchaConfigReq): Promise<BaseApiResult<List<QueryListWhereIdsCaptchaConfigResp>>> {
     let url = '/mas/captchaConfig/queryListWhereIds'
     const signed = await signRequest(this.config, this.service, {
       path: url,
@@ -183,29 +185,22 @@ export class CaptchaConfigApi {
     return res.json()
   }
 
-  async queryCaptchaConfig(params?: QueryCaptchaConfigReq): Promise<BaseApiResult & QueryCaptchaConfigResp> {
+  async queryCaptchaConfig(params: QueryCaptchaConfigReq): Promise<BaseApiResult<QueryCaptchaConfigResp>> {
     let url = '/mas/captchaConfig/query'
+
+    const result = Conversion(params)
+
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'GET',
-      headers: {},
-      query: params
+      query: result
     })
 
-    const reqUrl = new URL(`${signed.protocol}/${signed.hostname}${signed.path}`)
-    Object.entries(signed.query).forEach(([k, v]) => {
-      if (v === null || v === undefined) return
-      if (Array.isArray(v)) {
-        v.forEach(item => reqUrl.searchParams.append(k, item))
-      } else {
-        reqUrl.searchParams.append(k, v)
-      }
-    })
+    const reqUrl = Merge(signed, result)
 
     const res = await fetch(reqUrl, {
       method: signed.method,
-      headers: signed.headers,
-      body: signed.body
+      headers: signed.headers
     })
     return res.json()
   }
