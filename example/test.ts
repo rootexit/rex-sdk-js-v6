@@ -1302,3 +1302,59 @@ const sdk = new RExSdk({
 /* sdk.mas.emsConfig.queryEmsConfig({ id: 3 }).then(res => {
   console.log('🚀 ~ res:', res)
 }) */
+
+/* sdk.sas.bucketConfig
+  .createBucketConfig({
+    name: 'cigarette',
+    credential_id: 3,
+    bucket_name: 'cigarette',
+    region: '上海',
+    prefix: 'cigwu',
+    endpoint: 'aliyuncs.com',
+    public_domain: 'cigarette.aliyuncs.com',
+    remark: '测试oss'
+  })
+  .then(res => {
+    console.log('🚀 ~ res:', res)
+  }) */
+/* sdk.sas.bucketConfig
+  .updateBucketConfig({
+    id: 2,
+    name: 'strawberry',
+    credential_id: 3,
+    bucket_name: 'strawberry',
+    region: '上海',
+    prefix: 'cigwu',
+    endpoint: 'aliyuncs.com',
+    public_domain: 'strawberry.aliyuncs.com',
+    remark: '测试oss'
+  })
+  .then(res => {
+    console.log('🚀 ~ res:', res)
+  }) */
+/* sdk.sas.bucketConfig.updateDefaultBucketConfig({ id: 1 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.sas.bucketConfig
+  .updateStatusBucketConfig({
+    id: 2,
+    status: 2
+  })
+  .then(res => {
+    console.log('🚀 ~ res:', res)
+  }) */
+/* sdk.sas.bucketConfig.deleteBucketConfig({ id: 2 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.sas.bucketConfig.deleteManyBucketConfig({ ids: [3] }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.sas.bucketConfig.queryListBucketConfig().then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.sas.bucketConfig.queryListWhereIdsBucketConfig({ ids: [1] }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.sas.bucketConfig.queryBucketConfig({ id: 3 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */

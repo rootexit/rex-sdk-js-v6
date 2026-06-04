@@ -1,6 +1,8 @@
-import type { SDKConfig } from '../../types'
+import type { SDKConfig, List } from '../../types'
 import { BaseApiResult } from '../../types'
 import { signRequest } from '../../signer'
+import { Conversion, Merge } from '../../utils/common'
+
 import {
   CreateBucketConfigReq,
   CreateBucketConfigResp,
@@ -50,21 +52,21 @@ export class BucketConfigApi {
     return res.json()
   }
 
-  async deleteBucketConfig(params?: DeleteBucketConfigReq): Promise<BaseApiResult & DeleteBucketConfigResp> {
+  async deleteBucketConfig(params: DeleteBucketConfigReq): Promise<BaseApiResult & DeleteBucketConfigResp> {
     let url = '/sas/bucketConfig/delete'
+    const result = Conversion(params)
+
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: params
+      query: result
     })
 
-    const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
+    const reqUrl = Merge(signed, result)
+
+    const res = await fetch(reqUrl, {
       method: signed.method,
-      headers: signed.headers,
-      body: signed.body
+      headers: signed.headers
     })
     return res.json()
   }
@@ -145,7 +147,7 @@ export class BucketConfigApi {
     return res.json()
   }
 
-  async queryListBucketConfig(params?: QueryListBucketConfigReq): Promise<BaseApiResult & QueryListBucketConfigResp> {
+  async queryListBucketConfig(params?: QueryListBucketConfigReq): Promise<BaseApiResult<List<QueryListBucketConfigResp>>> {
     let url = '/sas/bucketConfig/queryList'
     const signed = await signRequest(this.config, this.service, {
       path: url,
@@ -164,7 +166,7 @@ export class BucketConfigApi {
     return res.json()
   }
 
-  async queryListWhereIdsBucketConfig(params?: QueryListWhereIdsBucketConfigReq): Promise<BaseApiResult & QueryListWhereIdsBucketConfigResp> {
+  async queryListWhereIdsBucketConfig(params?: QueryListWhereIdsBucketConfigReq): Promise<BaseApiResult<List<QueryListWhereIdsBucketConfigResp>>> {
     let url = '/sas/bucketConfig/queryListWhereIds'
     const signed = await signRequest(this.config, this.service, {
       path: url,
@@ -183,29 +185,21 @@ export class BucketConfigApi {
     return res.json()
   }
 
-  async queryBucketConfig(params?: QueryBucketConfigReq): Promise<BaseApiResult & QueryBucketConfigResp> {
+  async queryBucketConfig(params: QueryBucketConfigReq): Promise<BaseApiResult<QueryBucketConfigResp>> {
     let url = '/sas/bucketConfig/query'
+    const result = Conversion(params)
+
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'GET',
-      headers: {},
-      query: params
+      query: result
     })
 
-    const reqUrl = new URL(`${signed.protocol}/${signed.hostname}${signed.path}`)
-    Object.entries(signed.query).forEach(([k, v]) => {
-      if (v === null || v === undefined) return
-      if (Array.isArray(v)) {
-        v.forEach(item => reqUrl.searchParams.append(k, item))
-      } else {
-        reqUrl.searchParams.append(k, v)
-      }
-    })
+    const reqUrl = Merge(signed, result)
 
     const res = await fetch(reqUrl, {
       method: signed.method,
-      headers: signed.headers,
-      body: signed.body
+      headers: signed.headers
     })
     return res.json()
   }
