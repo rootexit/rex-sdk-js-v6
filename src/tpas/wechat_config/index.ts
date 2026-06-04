@@ -1,6 +1,8 @@
-import type { SDKConfig } from '../../types'
+import type { SDKConfig, List } from '../../types'
 import { BaseApiResult } from '../../types'
 import { signRequest } from '../../signer'
+import { Conversion, Merge } from '../../utils/common'
+
 import {
   CreateWechatConfigReq,
   CreateWechatConfigResp,
@@ -50,21 +52,21 @@ export class WechatConfigApi {
     return res.json()
   }
 
-  async deleteWechatConfig(params?: DeleteWechatConfigReq): Promise<BaseApiResult & DeleteWechatConfigResp> {
+  async deleteWechatConfig(params: DeleteWechatConfigReq): Promise<BaseApiResult & DeleteWechatConfigResp> {
     let url = '/tpas/wechatConfig/delete'
+    const result = Conversion(params)
+
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: params
+      query: result
     })
 
-    const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
+    const reqUrl = Merge(signed, result)
+
+    const res = await fetch(reqUrl, {
       method: signed.method,
-      headers: signed.headers,
-      body: signed.body
+      headers: signed.headers
     })
     return res.json()
   }
@@ -145,7 +147,7 @@ export class WechatConfigApi {
     return res.json()
   }
 
-  async queryListWechatConfig(params?: QueryListWechatConfigReq): Promise<BaseApiResult & QueryListWechatConfigResp> {
+  async queryListWechatConfig(params?: QueryListWechatConfigReq): Promise<BaseApiResult<List<QueryListWechatConfigResp>>> {
     let url = '/tpas/wechatConfig/queryList'
     const signed = await signRequest(this.config, this.service, {
       path: url,
@@ -164,7 +166,7 @@ export class WechatConfigApi {
     return res.json()
   }
 
-  async queryListWhereIdsWechatConfig(params?: QueryListWhereIdsWechatConfigReq): Promise<BaseApiResult & QueryListWhereIdsWechatConfigResp> {
+  async queryListWhereIdsWechatConfig(params?: QueryListWhereIdsWechatConfigReq): Promise<BaseApiResult<List<QueryListWhereIdsWechatConfigResp>>> {
     let url = '/tpas/wechatConfig/queryListWhereIds'
     const signed = await signRequest(this.config, this.service, {
       path: url,
@@ -183,29 +185,21 @@ export class WechatConfigApi {
     return res.json()
   }
 
-  async queryWechatConfig(params?: QueryWechatConfigReq): Promise<BaseApiResult & QueryWechatConfigResp> {
+  async queryWechatConfig(params: QueryWechatConfigReq): Promise<BaseApiResult<QueryWechatConfigResp>> {
     let url = '/tpas/wechatConfig/query'
+    const result = Conversion(params)
+
     const signed = await signRequest(this.config, this.service, {
       path: url,
       method: 'GET',
-      headers: {},
-      query: params
+      query: result
     })
 
-    const reqUrl = new URL(`${signed.protocol}/${signed.hostname}${signed.path}`)
-    Object.entries(signed.query).forEach(([k, v]) => {
-      if (v === null || v === undefined) return
-      if (Array.isArray(v)) {
-        v.forEach(item => reqUrl.searchParams.append(k, item))
-      } else {
-        reqUrl.searchParams.append(k, v)
-      }
-    })
+    const reqUrl = Merge(signed, result)
 
     const res = await fetch(reqUrl, {
       method: signed.method,
-      headers: signed.headers,
-      body: signed.body
+      headers: signed.headers
     })
     return res.json()
   }

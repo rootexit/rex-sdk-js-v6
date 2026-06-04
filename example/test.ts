@@ -1358,3 +1358,49 @@ const sdk = new RExSdk({
 /* sdk.sas.bucketConfig.queryBucketConfig({ id: 3 }).then(res => {
   console.log('🚀 ~ res:', res)
 }) */
+
+/* sdk.tpas.WechatConfig.createWechatConfig({
+  name: 'strawberry',
+  credential_id: 11,
+  app_type: 'mini_app',
+  gh_id: 'asjdk',
+  app_name: '草莓',
+  remark: '测试'
+}).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.tpas.WechatConfig.updateWechatConfig({
+  id: 3,
+  name: 'chanin',
+  credential_id: 11,
+  app_type: 'mini_app',
+  gh_id: 'asjdk',
+  app_name: '早呀',
+  remark: '测试11'
+}).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.tpas.WechatConfig.updateDefaultWechatConfig({ id: 1 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.tpas.WechatConfig.updateStatusWechatConfig({
+  id: 1,
+  status: 2
+}).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.tpas.WechatConfig.deleteWechatConfig({ id: 3 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.tpas.WechatConfig.deleteManyWechatConfig({ ids: [2] }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.tpas.WechatConfig.queryListWechatConfig().then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.tpas.WechatConfig.queryListWhereIdsWechatConfig({ ids: [1] }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+/* sdk.tpas.WechatConfig.queryWechatConfig({ id: 1 }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
