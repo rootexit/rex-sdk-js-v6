@@ -1,3 +1,12 @@
+2026-06-05
+
+1. 添加验证码配置模块【captcha_config】
+2. 添加短信配置模块【sms_config】
+3. 添加邮件配置模块【ems_config】
+4. 添加存储桶配置模块【bucket_config】
+5. 添加微信配置模块【wechat_config】
+6. 添加短信模块【sms】 和 邮件模块【ems】
+
 2026-06-02
 
 1. 凭证服务【credentials】 凭证配置模块【credential_config】
