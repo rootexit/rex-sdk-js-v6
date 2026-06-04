@@ -3,10 +3,6 @@ import { signRequest } from '../../signer'
 import {
   ApiCaptchaGenerateReq,
   ApiCaptchaGenerateResp,
-  ApiEmsSendReq,
-  ApiEmsSendResp,
-  ApiSmsSendReq,
-  ApiSmsSendResp,
   BehavioralVerificationInitReq,
   BehavioralVerificationInitResp,
   BehavioralVerificationVerifyReq,
@@ -109,44 +105,6 @@ export class BaseApi {
 
   async CaptchaGenerate(params?: ApiCaptchaGenerateReq): Promise<BaseApiResult & ApiCaptchaGenerateResp> {
     let url = '/mas/captcha/generate'
-
-    const signed = await signRequest(this.config, this.service, {
-      path: url,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: params
-    })
-    const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
-      method: signed.method,
-      headers: signed.headers,
-      body: signed.body
-    })
-    return res.json()
-  }
-
-  async SmsSend(params: ApiSmsSendReq): Promise<BaseApiResult & ApiSmsSendResp> {
-    let url = '/mas/sms/send'
-
-    const signed = await signRequest(this.config, this.service, {
-      path: url,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: params
-    })
-    const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
-      method: signed.method,
-      headers: signed.headers,
-      body: signed.body
-    })
-    return res.json()
-  }
-
-  async EmsSend(params: ApiEmsSendReq): Promise<BaseApiResult & ApiEmsSendResp> {
-    let url = '/mas/ems/send'
 
     const signed = await signRequest(this.config, this.service, {
       path: url,

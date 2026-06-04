@@ -1404,3 +1404,53 @@ const sdk = new RExSdk({
 /* sdk.tpas.WechatConfig.queryWechatConfig({ id: 1 }).then(res => {
   console.log('🚀 ~ res:', res)
 }) */
+
+/* sdk.mas.ems
+  .EmsSend({
+    recipient_email: ['@qq.com'],
+    cc: [{ email: '@qq.com', name: 'cigarette', key: 'default' }],
+    subject: '测试',
+    send_type: 'text/plain',
+    send_body: '测试邮件内容',
+    name: '',
+    service: '',
+    scene: ''
+  })
+  .then(res => {
+    console.log('🚀 ~ res:', res)
+  }) */
+/* sdk.mas.ems
+  .EmsSendSync({
+    recipient_email: ['@qq.com'],
+    cc: [{ email: '@qq.com', name: 'cigarette', key: 'default' }],
+    subject: '测试',
+    send_type: 'text/plain',
+    send_body: '测试邮件内容',
+    name: '',
+    service: '',
+    scene: ''
+  })
+  .then(res => {
+    console.log('🚀 ~ res:', res)
+  }) */
+/* sdk.mas.ems.EmsCheck({ request_id: '01KT9PHY3G7ZNQYVVCR54P7JFE' }).then(res => {
+  console.log('🚀 ~ res:', res)
+}) */
+
+/* sdk.mas.sms
+  .SmsSend({
+    mobile: ''
+  })
+  .then(res => {
+    console.log(res)
+  }) */
+/* sdk.mas.sms.SmsSendSync({ mobile: '' }).then(res => {
+  console.log(res)
+}) */
+sdk.mas.sms
+  .SmsCheck({
+    request_id: '01KT9PZ2S8DZPDE0ZRW105NCZ3'
+  })
+  .then(res => {
+    console.log(res)
+  })
