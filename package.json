@@ -1,6 +1,6 @@
 {
   "name": "rex-sdk-js-v6",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
     "dev": "npx nodemon example/test.ts",
     "build": "tsup src/index.ts --format cjs,esm --dts --clean",
     "preview": "pnpm run build && node example/test.js",
-    "publish": "pnpm publish"
+    "publish": "pnpm run build && pnpm publish"
   },
   "keywords": [],
   "author": "",
