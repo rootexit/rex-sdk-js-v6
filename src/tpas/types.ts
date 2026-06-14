@@ -78,3 +78,12 @@ export type WechatOffiaccountCode2TokenResp = {
         errmsg: string;
     };
 };
+
+export type WechatOffiaccountWebhookReq = {
+    nonce: string;
+    params: string;
+    timestamp: number;
+}
+export type WechatOffiaccountWebhookResp = {
+
+}

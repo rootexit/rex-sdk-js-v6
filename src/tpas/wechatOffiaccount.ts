@@ -12,7 +12,9 @@ import {
   WechatOffiaccountGetAccessTokenReq,
   WechatOffiaccountGetAccessTokenResp,
   WechatOffiaccountGetJsApiTicketReq,
-  WechatOffiaccountGetJsApiTicketResp
+  WechatOffiaccountGetJsApiTicketResp,
+  WechatOffiaccountWebhookReq,
+  WechatOffiaccountWebhookResp
 } from './types';
 
 export class WechatOffiaccountApi {
@@ -130,6 +132,26 @@ export class WechatOffiaccountApi {
   /* 微信公众号code换token */
   async Code2Token(params: WechatOffiaccountCode2TokenReq): Promise<BaseApiResult & WechatOffiaccountCode2TokenResp> {
     let url = '/tpas/wechatOffiaccount/code2token';
+
+    const signed = await signRequest(this.config, this.service, {
+      path: url,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: params
+    });
+    const res = await fetch(`${signed.protocol}/${signed.hostname}${signed.path}`, {
+      method: signed.method,
+      headers: signed.headers,
+      body: signed.body
+    });
+    return res.json();
+  }
+
+  /* 微信周期任务回调接口 */
+  async WechatWebhook(params: WechatOffiaccountWebhookReq): Promise<BaseApiResult & WechatOffiaccountWebhookResp> {
+    let url = '/tpas/wechatOffiaccount/job/webhook';
 
     const signed = await signRequest(this.config, this.service, {
       path: url,

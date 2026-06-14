@@ -1,19 +1,19 @@
-import type { SDKConfig, BaseApiResult } from '../types';
-import { signRequest } from '../signer';
-import { CtasPeriodicJobAddReq, CtasPeriodicJobAddResp, CtasPeriodicJobRemoveReq, CtasPeriodicJobRemoveResp } from './types';
+import type { SDKConfig, BaseApiResult } from '../../types';
+import { signRequest } from '../../signer';
+import { AddAnchoringTasksReq, AddAnchoringTasksResp, RemoveAnchoringTasksReq, RemoveAnchoringTasksResp } from './types';
 
-export class PeriodicJobAPI {
+export class AnchoredJobAPI {
   private config: SDKConfig;
   private service: string;
 
   constructor(config: SDKConfig) {
     this.config = config;
-    this.service = 'ctas';
+    this.service = 'taskQueue';
   }
 
-  /* 添加周期性任务 */
-  async BehavioralVerificationInit(params: CtasPeriodicJobAddReq): Promise<BaseApiResult & CtasPeriodicJobAddResp> {
-    let url = '/ctas/periodicJob/add';
+  /* 添加锚定性任务 */
+  async addAnchoringTasks(params: AddAnchoringTasksReq): Promise<BaseApiResult & AddAnchoringTasksResp> {
+    let url = '/taskQueue/anchoredJob/add';
 
     const signed = await signRequest(this.config, this.service, {
       path: url,
@@ -31,9 +31,9 @@ export class PeriodicJobAPI {
     return res.json();
   }
 
-  /* 移除周期性任务 */
-  async BehavioralVerificationVerify(params: CtasPeriodicJobRemoveReq): Promise<BaseApiResult & CtasPeriodicJobRemoveResp> {
-    let url = '/ctas/periodicJob/remove';
+  /* 移除锚定性任务 */
+  async removeAnchoringTasks(params: RemoveAnchoringTasksReq): Promise<BaseApiResult & RemoveAnchoringTasksResp> {
+    let url = '/taskQueue/anchoredJob/remove';
 
     const signed = await signRequest(this.config, this.service, {
       path: url,

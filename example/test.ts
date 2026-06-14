@@ -1447,10 +1447,41 @@ const sdk = new RExSdk({
 /* sdk.mas.sms.SmsSendSync({ mobile: '' }).then(res => {
   console.log(res)
 }) */
-sdk.mas.sms
+/* sdk.mas.sms
   .SmsCheck({
     request_id: '01KT9PZ2S8DZPDE0ZRW105NCZ3'
   })
   .then(res => {
     console.log(res)
-  })
+  }) */
+
+
+/* sdk.ctas.anchoredJob.addAnchoringTasks({
+  name: "cigarette2",
+  anchor_time: "2026-06-14 23:48:00",
+  interval_type: "day",
+  interval_value: 5,
+  webhook: "https:///webhook",
+  params: "{\"filename\":\"test.txt\",\"content\":\"6666\"}",
+  secret: "116e6224e2469b2d28fbecf"
+}).then(res => { console.log('🚀 ~ res:', res) }) */
+// sdk.ctas.anchoredJob.removeAnchoringTasks({ id: 21 }).then(res => { console.log('🚀 ~ res:', res) })
+
+/* sdk.ctas.delayedJob.addDelayedJobTasks({
+  name: "cigarette3",
+  execute_at: "2026-06-15 00:27:00",
+  max_retry_count: 5,
+  webhook: "https:///webhook",
+  params: "{\"filename\":\"test.txt\",\"content\":\"6666\"}",
+  secret: "116e6224e2469b2d28fbecf"
+}).then(res => { console.log('🚀 ~ res:', res) }) */
+// sdk.ctas.delayedJob.removeDelayedJobTasks({ id: 23 }).then(res => { console.log('🚀 ~ res:', res) })
+
+/* sdk.ctas.periodicJob.addPeriodicJobTasks({
+  name: "cigarette1",
+  spec: "0 0 * 1 * * *",
+  webhook: "https:///webhook",
+  params: "{\"filename\":\"test.txt\",\"content\":\"6666\"}",
+  secret: "116e6224e2469b2d28fbecf"
+}).then(res => { console.log('🚀 ~ res:', res) }) */
+// sdk.ctas.periodicJob.removePeriodicJobTasks({ id: 16 }).then(res => { console.log('🚀 ~ res:', res) })
